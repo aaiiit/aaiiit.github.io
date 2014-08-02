@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Chef | My Octopress Blog]]></title>
+  <link href="http://aaiiit.github.io/blog/categories/chef/atom.xml" rel="self"/>
+  <link href="http://aaiiit.github.io/"/>
+  <updated>2014-08-03T00:36:58+02:00</updated>
+  <id>http://aaiiit.github.io/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Chef Fails on Bootstrapping the First Time]]></title>
+    <link href="http://aaiiit.github.io/blog/2014/06/17/chef-first-run-fails/"/>
+    <updated>2014-06-17T00:00:00+02:00</updated>
+    <id>http://aaiiit.github.io/blog/2014/06/17/chef-first-run-fails</id>
+    <content type="html"><![CDATA[<p>= Problem</p>
+
+<p><div class="highlight"><pre><code class="language-bash" data-lang="bash">shops.suwappu.net Installing Chef Client<span class="p">&amp;</span>hellip<span class="p">;</span>
+shops.suwappu.net <span class="p">&amp;</span>ndash<span class="p">;</span>2014-06-17 10:12:40<span class="p">&amp;</span>ndash<span class="p">;</span>
+&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;https://www.opscode.com/chef/install.sh&quot;</span>&gt;https://www.opscode.com/chef/install.sh&lt;/a&gt;
+shops.suwappu.net Resolving www.opscode.com <span class="o">(</span>www.opscode.com<span class="o">)</span><span class="p">&amp;</span>hellip<span class="p">;</span> 184.106.28.90
+shops.suwappu.net Connecting to www.opscode.com
+<span class="o">(</span>www.opscode.com<span class="o">)</span><span class="p">|</span>184.106.28.90<span class="p">|</span>:443<span class="p">&amp;</span>hellip<span class="p">;</span> connected.
+shops.suwappu.net ERROR: The certificate of <span class="sb">`</span>www.opscode.com<span class="p">&amp;</span><span class="c">#8217; is not trusted.</span>
+shops.suwappu.net Starting first Chef Client run<span class="p">&amp;</span>hellip<span class="p">;</span>
+shops.suwappu.net bash: line 85: chef-client: <span class="nb">command </span>not found
+<span class="o">[</span>master<span class="o">][</span>/Code/suwappu/chef-resto/chef-repo-new<span class="o">]</span> librarian-chef</code></pre></div></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Using ZeroMQ]]></title>
+    <link href="http://aaiiit.github.io/blog/2014/05/30/using-zeromq/"/>
+    <updated>2014-05-30T00:00:00+02:00</updated>
+    <id>http://aaiiit.github.io/blog/2014/05/30/using-zeromq</id>
+    <content type="html"><![CDATA[<p>Install through Chef <a href="https://github.com/plu/zeromq-cookbook">zeromq cookbook</a></p>
+
+<p>This cookbook has been added to Role zeromq</p>
+
+<h1>ZeroMQ Version</h1>
+
+<p>Use this C-code to get the version of ZeroMq.</p>
+
+<p>  <div class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#include &amp;lt;stdio.h&gt;</span>
+  <span class="cp">#include &amp;ldquo;zmq.h&amp;rdquo;&lt;/p&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="kt">int</span> <span class="n">main</span> <span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">major</span><span class="p">,</span> <span class="n">minor</span><span class="p">,</span> <span class="n">patch</span><span class="p">;</span>
+    <span class="n">zmq_version</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">major</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">minor</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">patch</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">Installed</span> <span class="n">ZeroMQ</span> <span class="nl">version</span><span class="p">:</span> <span class="o">%</span><span class="n">d</span><span class="p">.</span><span class="o">%</span><span class="n">d</span><span class="p">.</span><span class="o">%</span><span class="n">d</span><span class="err">\</span><span class="n">n</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,</span> <span class="n">major</span><span class="p">,</span> <span class="n">minor</span><span class="p">,</span> <span class="n">patch</span><span class="p">);</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span></code></pre></div></p>
+
+<p>Compile and run:</p>
+
+<p>  <div class="highlight"><pre><code class="language-bash" data-lang="bash">gcc -lzmq zeromq-verion.c -o zeromq-version
+  ./zeromq-version
+  Installed ZeroMQ version: 3.2.4</code></pre></div></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Using Librarian Chef]]></title>
+    <link href="http://aaiiit.github.io/blog/2014/05/30/librarian-chef/"/>
+    <updated>2014-05-30T00:00:00+02:00</updated>
+    <id>http://aaiiit.github.io/blog/2014/05/30/librarian-chef</id>
+    <content type="html"><![CDATA[<p>Chef Repo should have Cheffile.<br/>
+Seems to work like bundler and stuff.</p>
+
+<p>Add needed cookbooks to file</p>
+
+<p>  cookbook &lsquo;zeromq&rsquo;,:git => &lsquo;<a href="https://github.com/plu/zeromq-cookbook">https://github.com/plu/zeromq-cookbook</a>&rsquo;</p>
+
+<p>Run librarian-chef install to install new cookbooks</p>
+
+<h1>Roles</h1>
+
+<ul>
+<li><p>base</p>
+
+<ul>
+<li>add deployer user with ssh key</li>
+<li>apt-get update</li>
+</ul>
+</li>
+<li><p>zeromq</p>
+
+<ul>
+<li>install zeromq</li>
+</ul>
+</li>
+<li><p>ruby-zeromq</p>
+
+<ul>
+<li>install ruby (Rubinius 2.2.6)</li>
+<li>install Ruby zmq library</li>
+</ul>
+</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[My Octopress Blog]]></title>
+  <link href="http://aaiiit.github.io/atom.xml" rel="self"/>
+  <link href="http://aaiiit.github.io/"/>
+  <updated>2014-08-03T00:36:58+02:00</updated>
+  <id>http://aaiiit.github.io/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Rails 4 Engines Test]]></title>
+    <link href="http://aaiiit.github.io/blog/2014/06/23/rails4-engines-test/"/>
+    <updated>2014-06-23T00:00:00+02:00</updated>
+    <id>http://aaiiit.github.io/blog/2014/06/23/rails4-engines-test</id>
+    <content type="html"><![CDATA[<p>Testing is broken out of the box!
+This is how you fix it :</p>
+
+<p>test/test_helper.rb</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># Configure Rails Environment</span>
+<span class="no">ENV</span><span class="o">[</span><span class="s2">&quot;RAILS_ENV&quot;</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;test&quot;</span>
+
+<span class="nb">require</span> <span class="no">File</span><span class="o">.</span><span class="n">expand_path</span><span class="p">(</span><span class="s2">&quot;../dummy/config/environment.rb&quot;</span><span class="p">,</span>  <span class="bp">__FILE__</span><span class="p">)</span>
+<span class="nb">require</span> <span class="s2">&quot;rails/test_help&quot;</span>
+
+<span class="no">Rails</span><span class="o">.</span><span class="n">backtrace_cleaner</span><span class="o">.</span><span class="n">remove_silencers!</span>
+
+<span class="c1"># Load support files</span>
+<span class="no">Dir</span><span class="o">[</span><span class="s2">&quot;</span><span class="si">#{</span><span class="no">File</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="bp">__FILE__</span><span class="p">)</span><span class="si">}</span><span class="s2">/support/**/*.rb&quot;</span><span class="o">].</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span> <span class="nb">require</span> <span class="n">f</span> <span class="p">}</span>
+
+<span class="c1"># Load fixtures from the engine</span>
+<span class="no">ActiveSupport</span><span class="o">::</span><span class="no">TestCase</span><span class="o">.</span><span class="n">fixture_path</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">expand_path</span><span class="p">(</span><span class="s2">&quot;../fixtures&quot;</span><span class="p">,</span> <span class="bp">__FILE__</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">ActiveSupport</span><span class="o">::</span><span class="no">TestCase</span>
+  <span class="n">fixtures</span> <span class="ss">:all</span>
+<span class="k">end</span>
+
+<span class="c1">#fixes other problems with controller tests (url helpers)</span>
+<span class="k">class</span> <span class="nc">ActionController</span><span class="o">::</span><span class="no">TestCase</span>
+  <span class="n">setup</span> <span class="k">do</span>
+    <span class="vi">@routes</span> <span class="o">=</span> <span class="no">Users</span><span class="o">::</span><span class="no">Engine</span><span class="o">.</span><span class="n">routes</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></div>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Chef Fails on Bootstrapping the First Time]]></title>
+    <link href="http://aaiiit.github.io/blog/2014/06/17/chef-first-run-fails/"/>
+    <updated>2014-06-17T00:00:00+02:00</updated>
+    <id>http://aaiiit.github.io/blog/2014/06/17/chef-first-run-fails</id>
+    <content type="html"><![CDATA[<p>= Problem</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">shops.suwappu.net Installing Chef Client...
+shops.suwappu.net --2014-06-17 10:12:40--
+https://www.opscode.com/chef/install.sh
+shops.suwappu.net Resolving www.opscode.com <span class="o">(</span>www.opscode.com<span class="o">)</span>... 184.106.28.90
+shops.suwappu.net Connecting to www.opscode.com
+<span class="o">(</span>www.opscode.com<span class="o">)</span><span class="p">|</span>184.106.28.90<span class="p">|</span>:443... connected.
+shops.suwappu.net ERROR: The certificate of <span class="sb">`</span>www.opscode.com<span class="err">&#39;</span> is not trusted.
+shops.suwappu.net Starting first Chef Client run...
+shops.suwappu.net bash: line 85: chef-client: <span class="nb">command </span>not found
+<span class="o">[</span>master<span class="o">][</span>/Code/suwappu/chef-resto/chef-repo-new<span class="o">]</span> librarian-chef</code></pre></div>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Using SSO]]></title>
+    <link href="http://aaiiit.github.io/blog/2014/06/13/using-sso/"/>
+    <updated>2014-06-13T00:00:00+02:00</updated>
+    <id>http://aaiiit.github.io/blog/2014/06/13/using-sso</id>
+    <content type="html"><![CDATA[<p>These are some notes for the internal SSO Provider.</p>
+
+<ul>
+<li>Add before_filter :sign_in to actions that need to be secured</li>
+<li>Use current_user to get to the signed in User</li>
+<li><p>Add Omniauth initializer</p></li>
+<li><p>Something else</p></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Rails 4 JS Compress]]></title>
+    <link href="http://aaiiit.github.io/blog/2014/06/01/rails-4-js-compress/"/>
+    <updated>2014-06-01T00:00:00+02:00</updated>
+    <id>http://aaiiit.github.io/blog/2014/06/01/rails-4-js-compress</id>
+    <content type="html"><![CDATA[<p><a href="http://blog.berylliumwork.com/2013/07/tips-on-rails-4-assets-compression-with.html">http://blog.berylliumwork.com/2013/07/tips-on-rails-4-assets-compression-with.html</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[OpenVZ Container TUN/TAP]]></title>
+    <link href="http://aaiiit.github.io/blog/2014/06/01/openvz-container-tun-tap/"/>
+    <updated>2014-06-01T00:00:00+02:00</updated>
+    <id>http://aaiiit.github.io/blog/2014/06/01/openvz-container-tun-tap</id>
+    <content type="html"><![CDATA[<p>While trying to use an OpenVZ container as an OpenVPN client,
+it seemed the container could not create the TUN device.</p>
+
+<p>See
+<a href="https://openvz.org/VPN_via_the_TUN/TAP_device">https://openvz.org/VPN_via_the_TUN/TAP_device</a></p>
+
+<p>OpenVZ containers have no TUN/TAP device.
+It is possible to grant the container access to tun/tap by doing :</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">CTID</span><span class="o">=</span>101
+  vzctl <span class="nb">set</span> <span class="nv">$CTID</span> --devnodes net/tun:rw --save
+  vzctl <span class="nb">set</span> <span class="nv">$CTID</span> --devices c:10:200:rw --save
+  vzctl <span class="nb">set</span> <span class="nv">$CTID</span> --capability net_admin:on --save
+  vzctl <span class="nb">exec</span> <span class="nv">$CTID</span> mkdir -p /dev/net
+  vzctl <span class="nb">exec</span> <span class="nv">$CTID</span> mknod /dev/net/tun c <span class="m">10</span> 200
+  vzctl <span class="nb">exec</span> <span class="nv">$CTID</span> chmod <span class="m">600</span> /dev/net/tun</code></pre></div>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[OpenVPN]]></title>
+    <link href="http://aaiiit.github.io/blog/2014/05/31/openvpn/"/>
+    <updated>2014-05-31T00:00:00+02:00</updated>
+    <id>http://aaiiit.github.io/blog/2014/05/31/openvpn</id>
+    <content type="html"><![CDATA[<p>Started using <a href="https://www.gitlab.com">Gitlab</a> today.
+It&rsquo;s like running Github for internal purposes.</p>
+
+<ul>
+<li><p>Followed installation instruction from
+<a href="https://gitlab.com/gitlab-org/gitlab-ce/blob/master/doc/install/installation.md">https://gitlab.com/gitlab-org/gitlab-ce/blob/master/doc/install/installation.md</a></p></li>
+<li><p>Edit gitlab-shell/config.yml and gitlab/config/gitlab.yml and change
+host config.</p></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Gitlab]]></title>
+    <link href="http://aaiiit.github.io/blog/2014/05/31/gitlab/"/>
+    <updated>2014-05-31T00:00:00+02:00</updated>
+    <id>http://aaiiit.github.io/blog/2014/05/31/gitlab</id>
+    <content type="html"><![CDATA[<p>Started using <a href="https://www.gitlab.com">Gitlab</a> today.
+It&rsquo;s like running Github for internal purposes.</p>
+
+<ul>
+<li><p>Followed installation instruction from
+<a href="https://gitlab.com/gitlab-org/gitlab-ce/blob/master/doc/install/installation.md">https://gitlab.com/gitlab-org/gitlab-ce/blob/master/doc/install/installation.md</a></p></li>
+<li><p>Edit gitlab-shell/config.yml and gitlab/config/gitlab.yml and change
+host config.</p></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Using ZeroMQ]]></title>
+    <link href="http://aaiiit.github.io/blog/2014/05/30/using-zeromq/"/>
+    <updated>2014-05-30T00:00:00+02:00</updated>
+    <id>http://aaiiit.github.io/blog/2014/05/30/using-zeromq</id>
+    <content type="html"><![CDATA[<p>Install through Chef <a href="https://github.com/plu/zeromq-cookbook">zeromq cookbook</a></p>
+
+<p>This cookbook has been added to Role zeromq</p>
+
+<h1>ZeroMQ Version</h1>
+
+<p>Use this C-code to get the version of ZeroMq.</p>
+
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#include &lt;stdio.h&gt;</span>
+  <span class="cp">#include &quot;zmq.h&quot;</span>
+
+  <span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">major</span><span class="p">,</span> <span class="n">minor</span><span class="p">,</span> <span class="n">patch</span><span class="p">;</span>
+    <span class="n">zmq_version</span><span class="p">(</span><span class="o">&amp;</span><span class="n">major</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">minor</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">patch</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Installed ZeroMQ version: %d.%d.%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">major</span><span class="p">,</span> <span class="n">minor</span><span class="p">,</span> <span class="n">patch</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span></code></pre></div>
+
+
+<p>Compile and run:</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">gcc -lzmq zeromq-verion.c -o zeromq-version
+  ./zeromq-version
+  Installed ZeroMQ version: 3.2.4</code></pre></div>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[OpenVZ Problem : Quota on Syscall]]></title>
+    <link href="http://aaiiit.github.io/blog/2014/05/30/openvz-quota-on-syscall/"/>
+    <updated>2014-05-30T00:00:00+02:00</updated>
+    <id>http://aaiiit.github.io/blog/2014/05/30/openvz-quota-on-syscall</id>
+    <content type="html"><![CDATA[<p>From :
+<a href="http://serverguru.blogspot.be/2009/09/vzquota-error-quota-on-syscall-for-id.html">http://serverguru.blogspot.be/2009/09/vzquota-error-quota-on-syscall-for-id.html</a></p>
+
+<p>Reason: The vzquota of that particular vps still running in the server. So you
+have to drop the quota before applying the new changes.</p>
+
+<p>remove /var/vzquota/quota. and drop the particular quota</p>
+
+<ul>
+<li>rm /var/vzquota/quota.110</li>
+<li>vzquota drop 110</li>
+<li>vzctl start 110</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Using Librarian Chef]]></title>
+    <link href="http://aaiiit.github.io/blog/2014/05/30/librarian-chef/"/>
+    <updated>2014-05-30T00:00:00+02:00</updated>
+    <id>http://aaiiit.github.io/blog/2014/05/30/librarian-chef</id>
+    <content type="html"><![CDATA[<p>Chef Repo should have Cheffile.<br/>
+Seems to work like bundler and stuff.</p>
+
+<p>Add needed cookbooks to file</p>
+
+<p>  cookbook &lsquo;zeromq&rsquo;,:git => &lsquo;<a href="https://github.com/plu/zeromq-cookbook">https://github.com/plu/zeromq-cookbook</a>&rsquo;</p>
+
+<p>Run librarian-chef install to install new cookbooks</p>
+
+<h1>Roles</h1>
+
+<ul>
+<li><p>base</p>
+
+<ul>
+<li>add deployer user with ssh key</li>
+<li>apt-get update</li>
+</ul>
+</li>
+<li><p>zeromq</p>
+
+<ul>
+<li>install zeromq</li>
+</ul>
+</li>
+<li><p>ruby-zeromq</p>
+
+<ul>
+<li>install ruby (Rubinius 2.2.6)</li>
+<li>install Ruby zmq library</li>
+</ul>
+</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Articles to Read]]></title>
+    <link href="http://aaiiit.github.io/blog/2014/05/27/articles-to-read/"/>
+    <updated>2014-05-27T23:15:00+02:00</updated>
+    <id>http://aaiiit.github.io/blog/2014/05/27/articles-to-read</id>
+    <content type="html"><![CDATA[<ul>
+<li><a href="http://www.linuxvoice.com/be-a-kernel-hacker">http://www.linuxvoice.com/be-a-kernel-hacker/</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Rails 4.1 Autotest Config]]></title>
+    <link href="http://aaiiit.github.io/blog/2014/05/27/rails-4.1-autotest-config/"/>
+    <updated>2014-05-27T20:26:21+02:00</updated>
+    <id>http://aaiiit.github.io/blog/2014/05/27/rails-4.1-autotest-config</id>
+    <content type="html"><![CDATA[<p>Use Guard, I like it better then autotest-rails.
+Can alsy use Guard for other things.</p>
+
+<p>Using Ruby stack : rbx-2.2.6@rails-zeromq</p>
+
+<p>Edit Gemfile, make sure it is in development group and not test group</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">group</span> <span class="ss">:development</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="err">‘</span><span class="n">guard</span><span class="o">-</span><span class="n">minitest</span><span class="err">’</span>
+<span class="k">end</span></code></pre></div>
+
+
+<p>guard init</p>
+
+<p>Edit Guardfile, config for rails 4</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">guard</span> <span class="ss">:minitest</span> <span class="k">do</span>
+  <span class="c1"># Rails 4</span>
+  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{^app/(.+)\.rb$}</span><span class="p">)</span>                               <span class="p">{</span> <span class="o">|</span><span class="n">m</span><span class="o">|</span> <span class="s2">&quot;test/</span><span class="si">#{</span><span class="n">m</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="si">}</span><span class="s2">_test.rb&quot;</span> <span class="p">}</span>
+  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{^app/controllers/application_controller\.rb$}</span><span class="p">)</span> <span class="p">{</span> <span class="s1">&#39;test/controllers&#39;</span> <span class="p">}</span>
+  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{^app/controllers/(.+)_controller\.rb$}</span><span class="p">)</span>        <span class="p">{</span> <span class="o">|</span><span class="n">m</span><span class="o">|</span> <span class="s2">&quot;test/integration/</span><span class="si">#{</span><span class="n">m</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="si">}</span><span class="s2">_test.rb&quot;</span> <span class="p">}</span>
+  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{^app/views/(.+)_mailer/.+}</span><span class="p">)</span>                   <span class="p">{</span> <span class="o">|</span><span class="n">m</span><span class="o">|</span> <span class="s2">&quot;test/mailers/</span><span class="si">#{</span><span class="n">m</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="si">}</span><span class="s2">_mailer_test.rb&quot;</span> <span class="p">}</span>
+  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{^lib/(.+)\.rb$}</span><span class="p">)</span>                               <span class="p">{</span> <span class="o">|</span><span class="n">m</span><span class="o">|</span> <span class="s2">&quot;test/lib/</span><span class="si">#{</span><span class="n">m</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="si">}</span><span class="s2">_test.rb&quot;</span> <span class="p">}</span>
+  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{^test/.+_test\.rb$}</span><span class="p">)</span>
+  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{^test/test_helper\.rb$}</span><span class="p">)</span> <span class="p">{</span> <span class="s1">&#39;test&#39;</span> <span class="p">}</span>
+<span class="k">end</span></code></pre></div>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Books to Read]]></title>
+    <link href="http://aaiiit.github.io/blog/2014/05/27/books-to-read/"/>
+    <updated>2014-05-27T19:15:00+02:00</updated>
+    <id>http://aaiiit.github.io/blog/2014/05/27/books-to-read</id>
+    <content type="html"><![CDATA[<ul>
+<li>The Banker&rsquo;s Clothes</li>
+<li>The Housekeeper and the Professor</li>
+<li>The Circle</li>
+<li>Oil on the Brain: Adventures from the Pump to the Pipeline</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Interesting Blogs]]></title>
+    <link href="http://aaiiit.github.io/blog/2014/05/27/blogs/"/>
+    <updated>2014-05-27T19:15:00+02:00</updated>
+    <id>http://aaiiit.github.io/blog/2014/05/27/blogs</id>
+    <content type="html"><![CDATA[<ul>
+<li><a href="http://use-the-index-luke.com/blog">http://use-the-index-luke.com/blog</a></li>
+<li><a href="http://unenumerated.blogspot.com">Nick Szabo&rsquo;s Unenumerated</a></li>
+<li><a href="http://szabo.best.vwh.net">Nick Szabo&rsquo;s Essays&hellip;</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Servers | My Octopress Blog]]></title>
+  <link href="http://aaiiit.github.io/blog/categories/servers/atom.xml" rel="self"/>
+  <link href="http://aaiiit.github.io/"/>
+  <updated>2014-08-03T00:36:58+02:00</updated>
+  <id>http://aaiiit.github.io/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Using ZeroMQ]]></title>
+    <link href="http://aaiiit.github.io/blog/2014/05/30/using-zeromq/"/>
+    <updated>2014-05-30T00:00:00+02:00</updated>
+    <id>http://aaiiit.github.io/blog/2014/05/30/using-zeromq</id>
+    <content type="html"><![CDATA[<p>Install through Chef <a href="https://github.com/plu/zeromq-cookbook">zeromq cookbook</a></p>
+
+<p>This cookbook has been added to Role zeromq</p>
+
+<h1>ZeroMQ Version</h1>
+
+<p>Use this C-code to get the version of ZeroMq.</p>
+
+<p>  <div class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#include &amp;lt;stdio.h&gt;</span>
+  <span class="cp">#include &amp;ldquo;zmq.h&amp;rdquo;&lt;/p&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="kt">int</span> <span class="n">main</span> <span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">major</span><span class="p">,</span> <span class="n">minor</span><span class="p">,</span> <span class="n">patch</span><span class="p">;</span>
+    <span class="n">zmq_version</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">major</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">minor</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">patch</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">Installed</span> <span class="n">ZeroMQ</span> <span class="nl">version</span><span class="p">:</span> <span class="o">%</span><span class="n">d</span><span class="p">.</span><span class="o">%</span><span class="n">d</span><span class="p">.</span><span class="o">%</span><span class="n">d</span><span class="err">\</span><span class="n">n</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,</span> <span class="n">major</span><span class="p">,</span> <span class="n">minor</span><span class="p">,</span> <span class="n">patch</span><span class="p">);</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span></code></pre></div></p>
+
+<p>Compile and run:</p>
+
+<p>  <div class="highlight"><pre><code class="language-bash" data-lang="bash">gcc -lzmq zeromq-verion.c -o zeromq-version
+  ./zeromq-version
+  Installed ZeroMQ version: 3.2.4</code></pre></div></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Using Librarian Chef]]></title>
+    <link href="http://aaiiit.github.io/blog/2014/05/30/librarian-chef/"/>
+    <updated>2014-05-30T00:00:00+02:00</updated>
+    <id>http://aaiiit.github.io/blog/2014/05/30/librarian-chef</id>
+    <content type="html"><![CDATA[<p>Chef Repo should have Cheffile.<br/>
+Seems to work like bundler and stuff.</p>
+
+<p>Add needed cookbooks to file</p>
+
+<p>  cookbook &lsquo;zeromq&rsquo;,:git => &lsquo;<a href="https://github.com/plu/zeromq-cookbook">https://github.com/plu/zeromq-cookbook</a>&rsquo;</p>
+
+<p>Run librarian-chef install to install new cookbooks</p>
+
+<h1>Roles</h1>
+
+<ul>
+<li><p>base</p>
+
+<ul>
+<li>add deployer user with ssh key</li>
+<li>apt-get update</li>
+</ul>
+</li>
+<li><p>zeromq</p>
+
+<ul>
+<li>install zeromq</li>
+</ul>
+</li>
+<li><p>ruby-zeromq</p>
+
+<ul>
+<li>install ruby (Rubinius 2.2.6)</li>
+<li>install Ruby zmq library</li>
+</ul>
+</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

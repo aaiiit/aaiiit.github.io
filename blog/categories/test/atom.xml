@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Test | My Octopress Blog]]></title>
+  <link href="http://aaiiit.github.io/blog/categories/test/atom.xml" rel="self"/>
+  <link href="http://aaiiit.github.io/"/>
+  <updated>2014-08-03T00:36:58+02:00</updated>
+  <id>http://aaiiit.github.io/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Rails 4 Engines Test]]></title>
+    <link href="http://aaiiit.github.io/blog/2014/06/23/rails4-engines-test/"/>
+    <updated>2014-06-23T00:00:00+02:00</updated>
+    <id>http://aaiiit.github.io/blog/2014/06/23/rails4-engines-test</id>
+    <content type="html"><![CDATA[<p>Testing is broken out of the box!
+This is how you fix it :</p>
+
+<p>test/test_helper.rb</p>
+
+<p><div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+
+<span class="sr">&lt;h1&gt;Configure Rails Environment&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="no">ENV</span><span class="o">[&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">RAILS_ENV</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span><span class="o">]</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="nb">test</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+
+<span class="sr">&lt;p&gt;require File.expand_path(&amp;ldquo;../</span><span class="n">dummy</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">environment</span><span class="o">.</span><span class="n">rb</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,</span>  <span class="o">&lt;</span><span class="n">strong</span><span class="o">&gt;</span><span class="no">FILE</span><span class="o">&lt;</span><span class="sr">/strong&gt;)</span>
+<span class="sr">require &amp;ldquo;rails/</span><span class="n">test_help</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+
+<span class="sr">&lt;p&gt;Rails.backtrace_cleaner.remove_silencers!&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="no">Load</span> <span class="n">support</span> <span class="n">files</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+
+<span class="sr">&lt;p&gt;Dir[&amp;ldquo;</span><span class="si">#{</span><span class="no">File</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="o">&lt;</span><span class="n">strong</span><span class="o">&gt;</span><span class="no">FILE</span><span class="o">&lt;</span><span class="sr">/strong&gt;)}/su</span><span class="n">pport</span><span class="o">/&lt;</span><span class="n">em</span><span class="o">&gt;*/&lt;</span><span class="sr">/em&gt;.rb&amp;rdquo;].each { |f| require f }&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="no">Load</span> <span class="n">fixtures</span> <span class="n">from</span> <span class="n">the</span> <span class="n">engine</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+
+<span class="sr">&lt;p&gt;ActiveSupport::TestCase.fixture_path = File.expand_path(&amp;ldquo;../</span><span class="n">fixtures</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,</span> <span class="o">&lt;</span><span class="n">strong</span><span class="o">&gt;</span><span class="no">FILE</span><span class="o">&lt;</span><span class="sr">/strong&gt;)&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="k">class</span> <span class="nc">ActiveSupport</span><span class="o">::</span><span class="no">TestCase</span>
+  <span class="n">fixtures</span> <span class="ss">:all</span>
+<span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+
+<span class="sr">&lt;h1&gt;fixes other problems with controller tests (url helpers)&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="k">class</span> <span class="nc">ActionController</span><span class="o">::</span><span class="no">TestCase</span>
+  <span class="n">setup</span> <span class="k">do</span>
+    <span class="vi">@routes</span> <span class="o">=</span> <span class="no">Users</span><span class="o">::</span><span class="no">Engine</span><span class="o">.</span><span class="n">routes</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></div></p>
+]]></content>
+  </entry>
+  
+</feed>

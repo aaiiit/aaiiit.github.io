@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Rails4 | My Octopress Blog]]></title>
+  <link href="http://aaiiit.github.io/blog/categories/rails4/atom.xml" rel="self"/>
+  <link href="http://aaiiit.github.io/"/>
+  <updated>2014-08-03T00:36:58+02:00</updated>
+  <id>http://aaiiit.github.io/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Using SSO]]></title>
+    <link href="http://aaiiit.github.io/blog/2014/06/13/using-sso/"/>
+    <updated>2014-06-13T00:00:00+02:00</updated>
+    <id>http://aaiiit.github.io/blog/2014/06/13/using-sso</id>
+    <content type="html"><![CDATA[<p>These are some notes for the internal SSO Provider.</p>
+
+<ul>
+<li>Add before_filter :sign_in to actions that need to be secured</li>
+<li>Use current_user to get to the signed in User</li>
+<li><p>Add Omniauth initializer</p></li>
+<li><p>Something else</p></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Rails 4 JS Compress]]></title>
+    <link href="http://aaiiit.github.io/blog/2014/06/01/rails-4-js-compress/"/>
+    <updated>2014-06-01T00:00:00+02:00</updated>
+    <id>http://aaiiit.github.io/blog/2014/06/01/rails-4-js-compress</id>
+    <content type="html"><![CDATA[<p><a href="http://blog.berylliumwork.com/2013/07/tips-on-rails-4-assets-compression-with.html">http://blog.berylliumwork.com/2013/07/tips-on-rails-4-assets-compression-with.html</a></p>
+]]></content>
+  </entry>
+  
+</feed>
