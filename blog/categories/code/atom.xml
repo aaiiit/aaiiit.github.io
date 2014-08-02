@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Code | My Octopress Blog]]></title>
+  <title><![CDATA[Category: Code | Brainleak]]></title>
   <link href="http://aaiiit.github.io/blog/categories/code/atom.xml" rel="self"/>
   <link href="http://aaiiit.github.io/"/>
-  <updated>2014-08-03T00:36:58+02:00</updated>
+  <updated>2014-08-03T01:07:39+02:00</updated>
   <id>http://aaiiit.github.io/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
-    
+    <name><![CDATA[Mestdagh Tom]]></name>
+    <email><![CDATA[mestdagh.tom@gmail.com]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
