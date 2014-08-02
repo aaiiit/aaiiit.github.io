@@ -1,0 +1,16 @@
+---
+layout: post
+title:  "Using SSO"
+date:   2014-06-13
+categories: server rails4 sso
+---
+
+These are some notes for the internal SSO Provider.
+
+  * Add before_filter :sign_in to actions that need to be secured
+  * Use current_user to get to the signed in User 
+  * Add Omniauth initializer
+
+
+  * Something else
+    

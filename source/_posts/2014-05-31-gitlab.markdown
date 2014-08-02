@@ -1,0 +1,16 @@
+---
+layout: post
+title:  "Gitlab"
+date:   2014-05-31
+categories: code git gitlab
+---
+
+Started using [Gitlab](https://www.gitlab.com) today.
+It's like running Github for internal purposes.
+
+
+  * Followed installation instruction from
+  [https://gitlab.com/gitlab-org/gitlab-ce/blob/master/doc/install/installation.md](https://gitlab.com/gitlab-org/gitlab-ce/blob/master/doc/install/installation.md)
+    
+  * Edit gitlab-shell/config.yml and gitlab/config/gitlab.yml and change
+    host config.

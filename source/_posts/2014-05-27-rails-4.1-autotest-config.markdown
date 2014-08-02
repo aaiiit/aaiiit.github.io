@@ -1,0 +1,39 @@
+---
+layout: post
+title:  "Rails 4.1 autotest config"
+date:   2014-05-27 18:26:21
+categories: rails-dev
+---
+
+
+Use Guard, I like it better then autotest-rails.
+Can alsy use Guard for other things.
+
+Using Ruby stack : rbx-2.2.6@rails-zeromq
+
+Edit Gemfile, make sure it is in development group and not test group
+
+{% highlight ruby %}
+group :development do
+  gem ‘guard-minitest’
+end
+{% endhighlight %}
+
+
+guard init
+
+
+Edit Guardfile, config for rails 4
+{% highlight ruby %}
+guard :minitest do
+  # Rails 4
+  watch(%r{^app/(.+)\.rb$})                               { |m| "test/#{m[1]}_test.rb" }
+  watch(%r{^app/controllers/application_controller\.rb$}) { 'test/controllers' }
+  watch(%r{^app/controllers/(.+)_controller\.rb$})        { |m| "test/integration/#{m[1]}_test.rb" }
+  watch(%r{^app/views/(.+)_mailer/.+})                   { |m| "test/mailers/#{m[1]}_mailer_test.rb" }
+  watch(%r{^lib/(.+)\.rb$})                               { |m| "test/lib/#{m[1]}_test.rb" }
+  watch(%r{^test/.+_test\.rb$})
+  watch(%r{^test/test_helper\.rb$}) { 'test' }
+end
+{% endhighlight %}
+
