@@ -3,6 +3,12 @@
   
   
   <url>
+    <loc>http://aaiiit.github.io/blog/2014/08/03/books-to-read/</loc>
+    <lastmod>2014-08-03T00:00:00+02:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>http://aaiiit.github.io/blog/2014/06/23/rails4-engines-test/</loc>
     <lastmod>2014-06-23T00:00:00+02:00</lastmod>
     <priority>0.8</priority>
@@ -89,14 +95,14 @@
   
   <url>
     <loc>http://aaiiit.github.io/blog/archives/</loc>
-    <lastmod>2014-08-03T01:07:39+02:00</lastmod>
+    <lastmod>2014-08-03T12:11:33+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://aaiiit.github.io/</loc>
-    <lastmod>2014-08-03T01:07:39+02:00</lastmod>
+    <lastmod>2014-08-03T12:11:33+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
