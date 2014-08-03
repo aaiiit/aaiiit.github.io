@@ -9,6 +9,8 @@ categories: books read
 * The Housekeeper and the Professor
 * The Circle
 * Oil on the Brain: Adventures from the Pump to the Pipeline
-* The Quest
+* The Quest [Daniel Yergin]
   Read first part it.  Very interesting.
+  Puts things in perspective.
 * The Goal
+* Grand Pursuit [Sylvia Nasar]
