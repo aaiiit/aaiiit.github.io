@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Openvz | Brainleak]]></title>
+  <link href="http://aaiiit.github.io/blog/categories/openvz/atom.xml" rel="self"/>
+  <link href="http://aaiiit.github.io/"/>
+  <updated>2014-08-03T12:17:40+02:00</updated>
+  <id>http://aaiiit.github.io/</id>
+  <author>
+    <name><![CDATA[Mestdagh Tom]]></name>
+    <email><![CDATA[mestdagh.tom@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[OpenVZ Container TUN/TAP]]></title>
+    <link href="http://aaiiit.github.io/blog/2014/06/01/openvz-container-tun-tap/"/>
+    <updated>2014-06-01T00:00:00+02:00</updated>
+    <id>http://aaiiit.github.io/blog/2014/06/01/openvz-container-tun-tap</id>
+    <content type="html"><![CDATA[<p>While trying to use an OpenVZ container as an OpenVPN client,
+it seemed the container could not create the TUN device.</p>
+
+<p>See
+<a href="https://openvz.org/VPN_via_the_TUN/TAP_device">https://openvz.org/VPN_via_the_TUN/TAP_device</a></p>
+
+<p>OpenVZ containers have no TUN/TAP device.
+It is possible to grant the container access to tun/tap by doing :</p>
+
+<p><div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">CTID</span><span class="o">=</span>101
+  vzctl <span class="nb">set</span> <span class="nv">$CTID</span> <span class="p">&amp;</span>ndash<span class="p">;</span>devnodes net/tun:rw <span class="p">&amp;</span>ndash<span class="p">;</span>save
+  vzctl <span class="nb">set</span> <span class="nv">$CTID</span> <span class="p">&amp;</span>ndash<span class="p">;</span>devices c:10:200:rw <span class="p">&amp;</span>ndash<span class="p">;</span>save
+  vzctl <span class="nb">set</span> <span class="nv">$CTID</span> <span class="p">&amp;</span>ndash<span class="p">;</span>capability net_admin:on <span class="p">&amp;</span>ndash<span class="p">;</span>save
+  vzctl <span class="nb">exec</span> <span class="nv">$CTID</span> mkdir -p /dev/net
+  vzctl <span class="nb">exec</span> <span class="nv">$CTID</span> mknod /dev/net/tun c <span class="m">10</span> 200
+  vzctl <span class="nb">exec</span> <span class="nv">$CTID</span> chmod <span class="m">600</span> /dev/net/tun</code></pre></div></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[OpenVZ Problem : Quota on Syscall]]></title>
+    <link href="http://aaiiit.github.io/blog/2014/05/30/openvz-quota-on-syscall/"/>
+    <updated>2014-05-30T00:00:00+02:00</updated>
+    <id>http://aaiiit.github.io/blog/2014/05/30/openvz-quota-on-syscall</id>
+    <content type="html"><![CDATA[<p>From :
+<a href="http://serverguru.blogspot.be/2009/09/vzquota-error-quota-on-syscall-for-id.html">http://serverguru.blogspot.be/2009/09/vzquota-error-quota-on-syscall-for-id.html</a></p>
+
+<p>Reason: The vzquota of that particular vps still running in the server. So you
+have to drop the quota before applying the new changes.</p>
+
+<p>remove /var/vzquota/quota. and drop the particular quota</p>
+
+<ul>
+<li>rm /var/vzquota/quota.110</li>
+<li>vzquota drop 110</li>
+<li>vzctl start 110</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

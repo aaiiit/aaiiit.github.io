@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Server | Brainleak]]></title>
+  <link href="http://aaiiit.github.io/blog/categories/server/atom.xml" rel="self"/>
+  <link href="http://aaiiit.github.io/"/>
+  <updated>2014-08-03T12:17:40+02:00</updated>
+  <id>http://aaiiit.github.io/</id>
+  <author>
+    <name><![CDATA[Mestdagh Tom]]></name>
+    <email><![CDATA[mestdagh.tom@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Chef Fails on Bootstrapping the First Time]]></title>
+    <link href="http://aaiiit.github.io/blog/2014/06/17/chef-first-run-fails/"/>
+    <updated>2014-06-17T00:00:00+02:00</updated>
+    <id>http://aaiiit.github.io/blog/2014/06/17/chef-first-run-fails</id>
+    <content type="html"><![CDATA[<p>= Problem</p>
+
+<p><div class="highlight"><pre><code class="language-bash" data-lang="bash">shops.suwappu.net Installing Chef Client<span class="p">&amp;</span>hellip<span class="p">;</span>
+shops.suwappu.net <span class="p">&amp;</span>ndash<span class="p">;</span>2014-06-17 10:12:40<span class="p">&amp;</span>ndash<span class="p">;</span>
+&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;https://www.opscode.com/chef/install.sh&quot;</span>&gt;https://www.opscode.com/chef/install.sh&lt;/a&gt;
+shops.suwappu.net Resolving www.opscode.com <span class="o">(</span>www.opscode.com<span class="o">)</span><span class="p">&amp;</span>hellip<span class="p">;</span> 184.106.28.90
+shops.suwappu.net Connecting to www.opscode.com
+<span class="o">(</span>www.opscode.com<span class="o">)</span><span class="p">|</span>184.106.28.90<span class="p">|</span>:443<span class="p">&amp;</span>hellip<span class="p">;</span> connected.
+shops.suwappu.net ERROR: The certificate of <span class="sb">`</span>www.opscode.com<span class="p">&amp;</span><span class="c">#8217; is not trusted.</span>
+shops.suwappu.net Starting first Chef Client run<span class="p">&amp;</span>hellip<span class="p">;</span>
+shops.suwappu.net bash: line 85: chef-client: <span class="nb">command </span>not found
+<span class="o">[</span>master<span class="o">][</span>/Code/suwappu/chef-resto/chef-repo-new<span class="o">]</span> librarian-chef</code></pre></div></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Using SSO]]></title>
+    <link href="http://aaiiit.github.io/blog/2014/06/13/using-sso/"/>
+    <updated>2014-06-13T00:00:00+02:00</updated>
+    <id>http://aaiiit.github.io/blog/2014/06/13/using-sso</id>
+    <content type="html"><![CDATA[<p>These are some notes for the internal SSO Provider.</p>
+
+<ul>
+<li>Add before_filter :sign_in to actions that need to be secured</li>
+<li>Use current_user to get to the signed in User</li>
+<li><p>Add Omniauth initializer</p></li>
+<li><p>Something else</p></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Rails 4 JS Compress]]></title>
+    <link href="http://aaiiit.github.io/blog/2014/06/01/rails-4-js-compress/"/>
+    <updated>2014-06-01T00:00:00+02:00</updated>
+    <id>http://aaiiit.github.io/blog/2014/06/01/rails-4-js-compress</id>
+    <content type="html"><![CDATA[<p><a href="http://blog.berylliumwork.com/2013/07/tips-on-rails-4-assets-compression-with.html">http://blog.berylliumwork.com/2013/07/tips-on-rails-4-assets-compression-with.html</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[OpenVZ Container TUN/TAP]]></title>
+    <link href="http://aaiiit.github.io/blog/2014/06/01/openvz-container-tun-tap/"/>
+    <updated>2014-06-01T00:00:00+02:00</updated>
+    <id>http://aaiiit.github.io/blog/2014/06/01/openvz-container-tun-tap</id>
+    <content type="html"><![CDATA[<p>While trying to use an OpenVZ container as an OpenVPN client,
+it seemed the container could not create the TUN device.</p>
+
+<p>See
+<a href="https://openvz.org/VPN_via_the_TUN/TAP_device">https://openvz.org/VPN_via_the_TUN/TAP_device</a></p>
+
+<p>OpenVZ containers have no TUN/TAP device.
+It is possible to grant the container access to tun/tap by doing :</p>
+
+<p><div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">CTID</span><span class="o">=</span>101
+  vzctl <span class="nb">set</span> <span class="nv">$CTID</span> <span class="p">&amp;</span>ndash<span class="p">;</span>devnodes net/tun:rw <span class="p">&amp;</span>ndash<span class="p">;</span>save
+  vzctl <span class="nb">set</span> <span class="nv">$CTID</span> <span class="p">&amp;</span>ndash<span class="p">;</span>devices c:10:200:rw <span class="p">&amp;</span>ndash<span class="p">;</span>save
+  vzctl <span class="nb">set</span> <span class="nv">$CTID</span> <span class="p">&amp;</span>ndash<span class="p">;</span>capability net_admin:on <span class="p">&amp;</span>ndash<span class="p">;</span>save
+  vzctl <span class="nb">exec</span> <span class="nv">$CTID</span> mkdir -p /dev/net
+  vzctl <span class="nb">exec</span> <span class="nv">$CTID</span> mknod /dev/net/tun c <span class="m">10</span> 200
+  vzctl <span class="nb">exec</span> <span class="nv">$CTID</span> chmod <span class="m">600</span> /dev/net/tun</code></pre></div></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[OpenVPN]]></title>
+    <link href="http://aaiiit.github.io/blog/2014/05/31/openvpn/"/>
+    <updated>2014-05-31T00:00:00+02:00</updated>
+    <id>http://aaiiit.github.io/blog/2014/05/31/openvpn</id>
+    <content type="html"><![CDATA[<p>Started using <a href="https://www.gitlab.com">Gitlab</a> today.
+It&rsquo;s like running Github for internal purposes.</p>
+
+<ul>
+<li><p>Followed installation instruction from
+<a href="https://gitlab.com/gitlab-org/gitlab-ce/blob/master/doc/install/installation.md">https://gitlab.com/gitlab-org/gitlab-ce/blob/master/doc/install/installation.md</a></p></li>
+<li><p>Edit gitlab-shell/config.yml and gitlab/config/gitlab.yml and change
+host config.</p></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

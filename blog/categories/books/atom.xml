@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Books | Brainleak]]></title>
+  <link href="http://aaiiit.github.io/blog/categories/books/atom.xml" rel="self"/>
+  <link href="http://aaiiit.github.io/"/>
+  <updated>2014-08-03T12:17:40+02:00</updated>
+  <id>http://aaiiit.github.io/</id>
+  <author>
+    <name><![CDATA[Mestdagh Tom]]></name>
+    <email><![CDATA[mestdagh.tom@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Books to Read]]></title>
+    <link href="http://aaiiit.github.io/blog/2014/08/03/books-to-read/"/>
+    <updated>2014-08-03T00:00:00+02:00</updated>
+    <id>http://aaiiit.github.io/blog/2014/08/03/books-to-read</id>
+    <content type="html"><![CDATA[<ul>
+<li>The Banker&rsquo;s Clothes</li>
+<li>The Housekeeper and the Professor</li>
+<li>The Circle</li>
+<li>Oil on the Brain: Adventures from the Pump to the Pipeline</li>
+<li><p>The Quest [Daniel Yergin]</p>
+
+<p>  Read first part it.  Very interesting.
+  Puts things in perspective.</p></li>
+<li>The Goal</li>
+<li>Grand Pursuit [Sylvia Nasar]</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Books to Read]]></title>
+    <link href="http://aaiiit.github.io/blog/2014/05/27/books-to-read/"/>
+    <updated>2014-05-27T19:15:00+02:00</updated>
+    <id>http://aaiiit.github.io/blog/2014/05/27/books-to-read</id>
+    <content type="html"><![CDATA[<ul>
+<li>The Banker&rsquo;s Clothes</li>
+<li>The Housekeeper and the Professor</li>
+<li>The Circle</li>
+<li>Oil on the Brain: Adventures from the Pump to the Pipeline</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

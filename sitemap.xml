@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  
+  <url>
+    <loc>http://aaiiit.github.io/blog/2014/08/03/books-to-read/</loc>
+    <lastmod>2014-08-03T00:00:00+02:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://aaiiit.github.io/blog/2014/06/23/rails4-engines-test/</loc>
+    <lastmod>2014-06-23T00:00:00+02:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://aaiiit.github.io/blog/2014/06/17/chef-first-run-fails/</loc>
+    <lastmod>2014-06-17T00:00:00+02:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://aaiiit.github.io/blog/2014/06/13/using-sso/</loc>
+    <lastmod>2014-06-13T00:00:00+02:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://aaiiit.github.io/blog/2014/06/01/rails-4-js-compress/</loc>
+    <lastmod>2014-06-01T00:00:00+02:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://aaiiit.github.io/blog/2014/06/01/openvz-container-tun-tap/</loc>
+    <lastmod>2014-06-01T00:00:00+02:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://aaiiit.github.io/blog/2014/05/31/openvpn/</loc>
+    <lastmod>2014-05-31T00:00:00+02:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://aaiiit.github.io/blog/2014/05/31/gitlab/</loc>
+    <lastmod>2014-05-31T00:00:00+02:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://aaiiit.github.io/blog/2014/05/30/using-zeromq/</loc>
+    <lastmod>2014-05-30T00:00:00+02:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://aaiiit.github.io/blog/2014/05/30/openvz-quota-on-syscall/</loc>
+    <lastmod>2014-05-30T00:00:00+02:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://aaiiit.github.io/blog/2014/05/30/librarian-chef/</loc>
+    <lastmod>2014-05-30T00:00:00+02:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://aaiiit.github.io/blog/2014/05/27/articles-to-read/</loc>
+    <lastmod>2014-05-27T23:15:00+02:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://aaiiit.github.io/blog/2014/05/27/rails-4.1-autotest-config/</loc>
+    <lastmod>2014-05-27T20:26:21+02:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://aaiiit.github.io/blog/2014/05/27/books-to-read/</loc>
+    <lastmod>2014-05-27T19:15:00+02:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://aaiiit.github.io/blog/2014/05/27/blogs/</loc>
+    <lastmod>2014-05-27T19:15:00+02:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  
+  <url>
+    <loc>http://aaiiit.github.io/blog/archives/</loc>
+    <lastmod>2014-08-03T12:17:40+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>http://aaiiit.github.io/</loc>
+    <lastmod>2014-08-03T12:17:40+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  
+</urlset>
