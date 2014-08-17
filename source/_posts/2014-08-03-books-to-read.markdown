@@ -10,7 +10,8 @@ categories: books read
 * The Circle
 * Oil on the Brain: Adventures from the Pump to the Pipeline
 * The Quest [Daniel Yergin]
-  Read first part it.  Very interesting.
-  Puts things in perspective.
+
+    Read first part it.  Very interesting.
+    Puts current crisis in perspective.
 * The Goal
 * Grand Pursuit [Sylvia Nasar]
