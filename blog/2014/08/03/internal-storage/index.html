@@ -5,14 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Interesting Blogs - Brainleak</title>
+  <title>Internal Storage - Brainleak</title>
   <meta name="author" content="Mestdagh Tom">
 
   
-  <meta name="description" content="
-http://use-the-index-luke.com/blog
-Nick Szabo&rsquo;s Unenumerated
-Nick Szabo&rsquo;s Essays&hellip; ">
+  <meta name="description" content="Storage server Using a Raspberry PI model B with external hdd&rsquo;s as a NAS.
+Device is identified as &lsquo;storage&rsquo; on the network.
+HDD& &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,7 +20,7 @@ Nick Szabo&rsquo;s Essays&hellip; ">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://aaiiit.github.io/blog/2014/05/27/blogs">
+  <link rel="canonical" href="http://aaiiit.github.io/blog/2014/08/03/internal-storage">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Brainleak" type="application/atom+xml">
@@ -71,7 +70,7 @@ Nick Szabo&rsquo;s Essays&hellip; ">
   
   <header>
     
-      <h1 class="entry-title">Interesting Blogs</h1>
+      <h1 class="entry-title">Internal Storage</h1>
     
     
       <p class="meta">
@@ -87,17 +86,32 @@ Nick Szabo&rsquo;s Essays&hellip; ">
   
 
 
-<time datetime="2014-05-27T19:15:00+02:00" pubdate data-updated="true">May 27<sup>th</sup>, 2014</time>
+<time datetime="2014-08-03T13:59:13+02:00" pubdate data-updated="true">Aug 3<sup>rd</sup>, 2014</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><ul>
-<li><a href="http://use-the-index-luke.com/blog">http://use-the-index-luke.com/blog</a></li>
-<li><a href="http://unenumerated.blogspot.com">Nick Szabo&rsquo;s Unenumerated</a></li>
-<li><a href="http://szabo.best.vwh.net">Nick Szabo&rsquo;s Essays&hellip;</a></li>
+<div class="entry-content"><h2>Storage server</h2>
+
+<p>Using a Raspberry PI model B with external hdd&rsquo;s as a NAS.
+Device is identified as &lsquo;storage&rsquo; on the network.
+HDD&rsquo;s are mounted in /mnt.  Right now only data-1 is mounted.
+Clients use /data-1 as mountpoint.</p>
+
+<h1>NFS mounts</h1>
+
+<p>storage:/mnt/data-1 /data-1 nfs defaults    0   0</p>
+
+<h2>TODO</h2>
+
+<ul>
+<li>Setup rights so that clients can write to it</li>
+<li><p>Create bootscript so that all necessary services are started</p>
+
+<p>  After booting storage NFS can not be started because rpcbind
+  is not started.  First start rpcbind then nfs-common and nfs-kernel</p></li>
 </ul>
 
 </div>
@@ -122,21 +136,15 @@ Nick Szabo&rsquo;s Essays&hellip; ">
   
 
 
-<time datetime="2014-05-27T19:15:00+02:00" pubdate data-updated="true">May 27<sup>th</sup>, 2014</time>
+<time datetime="2014-08-03T13:59:13+02:00" pubdate data-updated="true">Aug 3<sup>rd</sup>, 2014</time>
       
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/blog/'>blog</a>, <a class='category' href='/blog/categories/read/'>read</a>
-  
-</span>
 
 
     </p>
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://aaiiit.github.io/blog/2014/05/27/blogs/" data-via="" data-counturl="http://aaiiit.github.io/blog/2014/05/27/blogs/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://aaiiit.github.io/blog/2014/08/03/internal-storage/" data-via="" data-counturl="http://aaiiit.github.io/blog/2014/08/03/internal-storage/" >Tweet</a>
   
   
   
@@ -145,8 +153,10 @@ Nick Szabo&rsquo;s Essays&hellip; ">
     
     <p class="meta">
       
+        <a class="basic-alignment left" href="/blog/2014/08/03/books-to-read/" title="Previous Post: Books to read">&laquo; Books to read</a>
       
-        <a class="basic-alignment right" href="/blog/2014/05/27/books-to-read/" title="Next Post: Books to read">Books to read &raquo;</a>
+      
+        <a class="basic-alignment right" href="/blog/2014/08/17/openvz-moving-containers/" title="Next Post: OpenVZ moving containers">OpenVZ moving containers &raquo;</a>
       
     </p>
   </footer>

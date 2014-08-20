@@ -5,14 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Interesting Blogs - Brainleak</title>
+  <title>OpenVZ Moving Containers - Brainleak</title>
   <meta name="author" content="Mestdagh Tom">
 
   
-  <meta name="description" content="
-http://use-the-index-luke.com/blog
-Nick Szabo&rsquo;s Unenumerated
-Nick Szabo&rsquo;s Essays&hellip; ">
+  <meta name="description" content="OpenVZ moving containers When moving OpenVZ containers on the hdd to another location you have to do some other changes to : Edit /etc/vz/conf/.conf &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,7 +18,7 @@ Nick Szabo&rsquo;s Essays&hellip; ">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://aaiiit.github.io/blog/2014/05/27/blogs">
+  <link rel="canonical" href="http://aaiiit.github.io/blog/2014/08/17/openvz-moving-containers">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Brainleak" type="application/atom+xml">
@@ -71,7 +68,7 @@ Nick Szabo&rsquo;s Essays&hellip; ">
   
   <header>
     
-      <h1 class="entry-title">Interesting Blogs</h1>
+      <h1 class="entry-title">OpenVZ Moving Containers</h1>
     
     
       <p class="meta">
@@ -87,19 +84,26 @@ Nick Szabo&rsquo;s Essays&hellip; ">
   
 
 
-<time datetime="2014-05-27T19:15:00+02:00" pubdate data-updated="true">May 27<sup>th</sup>, 2014</time>
+<time datetime="2014-08-17T13:59:13+02:00" pubdate data-updated="true">Aug 17<sup>th</sup>, 2014</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><ul>
-<li><a href="http://use-the-index-luke.com/blog">http://use-the-index-luke.com/blog</a></li>
-<li><a href="http://unenumerated.blogspot.com">Nick Szabo&rsquo;s Unenumerated</a></li>
-<li><a href="http://szabo.best.vwh.net">Nick Szabo&rsquo;s Essays&hellip;</a></li>
+<div class="entry-content"><h2>OpenVZ moving containers</h2>
+
+<p>When moving OpenVZ containers on the hdd to another location you have to do some other changes to :</p>
+
+<ul>
+<li>Edit /etc/vz/conf/<ctid>.conf and change private path to new location</li>
+<li>Drop vzquota on container
+  vzquota drop <ctid></li>
 </ul>
 
+
+<p>  Then you probably should reinitialize quota and turn it back on again,
+  but that&rsquo;s for another time.  Need to look into it.</p>
 </div>
 
 
@@ -122,21 +126,15 @@ Nick Szabo&rsquo;s Essays&hellip; ">
   
 
 
-<time datetime="2014-05-27T19:15:00+02:00" pubdate data-updated="true">May 27<sup>th</sup>, 2014</time>
+<time datetime="2014-08-17T13:59:13+02:00" pubdate data-updated="true">Aug 17<sup>th</sup>, 2014</time>
       
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/blog/'>blog</a>, <a class='category' href='/blog/categories/read/'>read</a>
-  
-</span>
 
 
     </p>
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://aaiiit.github.io/blog/2014/05/27/blogs/" data-via="" data-counturl="http://aaiiit.github.io/blog/2014/05/27/blogs/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://aaiiit.github.io/blog/2014/08/17/openvz-moving-containers/" data-via="" data-counturl="http://aaiiit.github.io/blog/2014/08/17/openvz-moving-containers/" >Tweet</a>
   
   
   
@@ -145,8 +143,8 @@ Nick Szabo&rsquo;s Essays&hellip; ">
     
     <p class="meta">
       
+        <a class="basic-alignment left" href="/blog/2014/08/03/internal-storage/" title="Previous Post: Internal Storage">&laquo; Internal Storage</a>
       
-        <a class="basic-alignment right" href="/blog/2014/05/27/books-to-read/" title="Next Post: Books to read">Books to read &raquo;</a>
       
     </p>
   </footer>

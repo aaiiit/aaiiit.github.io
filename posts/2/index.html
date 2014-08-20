@@ -9,8 +9,7 @@
   <meta name="author" content="Mestdagh Tom">
 
   
-  <meta name="description" content="Chef Repo should have Cheffile.
-Seems to work like bundler and stuff. Add needed cookbooks to file cookbook &lsquo;zeromq&rsquo;,:git => &lsquo;https &hellip;">
+  <meta name="description" content="Install through Chef zeromq cookbook This cookbook has been added to Role zeromq ZeroMQ Version Use this C-code to get the version of ZeroMq. # &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +65,118 @@ Seems to work like bundler and stuff. Add needed cookbooks to file cookbook &lsq
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/05/30/using-zeromq/">Using ZeroMQ</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-30T00:00:00+02:00" pubdate data-updated="true">May 30<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Install through Chef <a href="https://github.com/plu/zeromq-cookbook">zeromq cookbook</a></p>
+
+<p>This cookbook has been added to Role zeromq</p>
+
+<h1>ZeroMQ Version</h1>
+
+<p>Use this C-code to get the version of ZeroMq.</p>
+
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#include &lt;stdio.h&gt;</span>
+  <span class="cp">#include &quot;zmq.h&quot;</span>
+
+  <span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">major</span><span class="p">,</span> <span class="n">minor</span><span class="p">,</span> <span class="n">patch</span><span class="p">;</span>
+    <span class="n">zmq_version</span><span class="p">(</span><span class="o">&amp;</span><span class="n">major</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">minor</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">patch</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Installed ZeroMQ version: %d.%d.%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">major</span><span class="p">,</span> <span class="n">minor</span><span class="p">,</span> <span class="n">patch</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span></code></pre></div>
+
+
+<p>Compile and run:</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">gcc -lzmq zeromq-verion.c -o zeromq-version
+  ./zeromq-version
+  Installed ZeroMQ version: 3.2.4</code></pre></div>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/05/30/openvz-quota-on-syscall/">OpenVZ Problem : Quota on Syscall</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-30T00:00:00+02:00" pubdate data-updated="true">May 30<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>From :
+<a href="http://serverguru.blogspot.be/2009/09/vzquota-error-quota-on-syscall-for-id.html">http://serverguru.blogspot.be/2009/09/vzquota-error-quota-on-syscall-for-id.html</a></p>
+
+<p>Reason: The vzquota of that particular vps still running in the server. So you
+have to drop the quota before applying the new changes.</p>
+
+<p>remove /var/vzquota/quota. and drop the particular quota</p>
+
+<ul>
+<li>rm /var/vzquota/quota.110</li>
+<li>vzquota drop 110</li>
+<li>vzctl start 110</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -337,6 +448,14 @@ Can alsy use Guard for other things.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/08/17/openvz-moving-containers/">OpenVZ Moving Containers</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/08/03/internal-storage/">Internal Storage</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/08/03/books-to-read/">Books to Read</a>
       </li>
     
@@ -346,14 +465,6 @@ Can alsy use Guard for other things.</p>
     
       <li class="post">
         <a href="/blog/2014/06/17/chef-first-run-fails/">Chef Fails on Bootstrapping the First Time</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/06/13/using-sso/">Using SSO</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/06/01/rails-4-js-compress/">Rails 4 JS Compress</a>
       </li>
     
   </ul>

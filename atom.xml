@@ -4,7 +4,7 @@
   <title><![CDATA[Brainleak]]></title>
   <link href="http://aaiiit.github.io/atom.xml" rel="self"/>
   <link href="http://aaiiit.github.io/"/>
-  <updated>2014-08-03T12:17:40+02:00</updated>
+  <updated>2014-08-20T19:18:58+02:00</updated>
   <id>http://aaiiit.github.io/</id>
   <author>
     <name><![CDATA[Mestdagh Tom]]></name>
@@ -12,6 +12,56 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[OpenVZ Moving Containers]]></title>
+    <link href="http://aaiiit.github.io/blog/2014/08/17/openvz-moving-containers/"/>
+    <updated>2014-08-17T13:59:13+02:00</updated>
+    <id>http://aaiiit.github.io/blog/2014/08/17/openvz-moving-containers</id>
+    <content type="html"><![CDATA[<h2>OpenVZ moving containers</h2>
+
+<p>When moving OpenVZ containers on the hdd to another location you have to do some other changes to :</p>
+
+<ul>
+<li>Edit /etc/vz/conf/<ctid>.conf and change private path to new location</li>
+<li>Drop vzquota on container
+  vzquota drop <ctid></li>
+</ul>
+
+
+<p>  Then you probably should reinitialize quota and turn it back on again,
+  but that&rsquo;s for another time.  Need to look into it.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Internal Storage]]></title>
+    <link href="http://aaiiit.github.io/blog/2014/08/03/internal-storage/"/>
+    <updated>2014-08-03T13:59:13+02:00</updated>
+    <id>http://aaiiit.github.io/blog/2014/08/03/internal-storage</id>
+    <content type="html"><![CDATA[<h2>Storage server</h2>
+
+<p>Using a Raspberry PI model B with external hdd&rsquo;s as a NAS.
+Device is identified as &lsquo;storage&rsquo; on the network.
+HDD&rsquo;s are mounted in /mnt.  Right now only data-1 is mounted.
+Clients use /data-1 as mountpoint.</p>
+
+<h1>NFS mounts</h1>
+
+<p>storage:/mnt/data-1 /data-1 nfs defaults    0   0</p>
+
+<h2>TODO</h2>
+
+<ul>
+<li>Setup rights so that clients can write to it</li>
+<li><p>Create bootscript so that all necessary services are started</p>
+
+<p>  After booting storage NFS can not be started because rpcbind
+  is not started.  First start rpcbind then nfs-common and nfs-kernel</p></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Books to Read]]></title>
@@ -26,7 +76,7 @@
 <li><p>The Quest [Daniel Yergin]</p>
 
 <p>  Read first part it.  Very interesting.
-  Puts things in perspective.</p></li>
+  Puts current crisis in perspective.</p></li>
 <li>The Goal</li>
 <li>Grand Pursuit [Sylvia Nasar]</li>
 </ul>
