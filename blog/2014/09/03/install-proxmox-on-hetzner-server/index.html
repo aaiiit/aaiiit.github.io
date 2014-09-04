@@ -5,14 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Chef Fails on Bootstrapping the First Time - Brainleak</title>
+  <title>Install Proxmox on Hetzner Server - Brainleak</title>
   <meta name="author" content="Mestdagh Tom">
 
   
-  <meta name="description" content="= Problem shops.suwappu.net Installing Chef Client...
-shops.suwappu.net --2014-06-17 10:12:40--
-https://www.opscode.com/chef/install.sh
-shops.suwappu &hellip;">
+  <meta name="description" content="Boot in rescue mode
+Set root passwd
+Install image installimage Configure partitions Use LVM so that we can take snapshots and live dumps. Filesystem &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,7 +20,7 @@ shops.suwappu &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://aaiiit.github.io/blog/2014/06/17/chef-first-run-fails">
+  <link rel="canonical" href="http://aaiiit.github.io/blog/2014/09/03/install-proxmox-on-hetzner-server">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Brainleak" type="application/atom+xml">
@@ -71,7 +70,7 @@ shops.suwappu &hellip;">
   
   <header>
     
-      <h1 class="entry-title">Chef Fails on Bootstrapping the First Time</h1>
+      <h1 class="entry-title">Install Proxmox on Hetzner Server</h1>
     
     
       <p class="meta">
@@ -87,27 +86,68 @@ shops.suwappu &hellip;">
   
 
 
-<time datetime="2014-06-17T00:00:00+02:00" pubdate data-updated="true">Jun 17<sup>th</sup>, 2014</time>
+<time datetime="2014-09-03T13:10:15+02:00" pubdate data-updated="true">Sep 3<sup>rd</sup>, 2014</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>= Problem</p>
-
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">shops.suwappu.net Installing Chef Client...
-shops.suwappu.net --2014-06-17 10:12:40--
-https://www.opscode.com/chef/install.sh
-shops.suwappu.net Resolving www.opscode.com <span class="o">(</span>www.opscode.com<span class="o">)</span>... 184.106.28.90
-shops.suwappu.net Connecting to www.opscode.com
-<span class="o">(</span>www.opscode.com<span class="o">)</span><span class="p">|</span>184.106.28.90<span class="p">|</span>:443... connected.
-shops.suwappu.net ERROR: The certificate of <span class="sb">`</span>www.opscode.com<span class="err">&#39;</span> is not trusted.
-shops.suwappu.net Starting first Chef Client run...
-shops.suwappu.net bash: line 85: chef-client: <span class="nb">command </span>not found
-<span class="o">[</span>master<span class="o">][</span>/Code/suwappu/chef-resto/chef-repo-new<span class="o">]</span> librarian-chef</code></pre></div>
+<div class="entry-content"><ul>
+<li>Boot in rescue mode</li>
+<li>Set root passwd</li>
+<li>Install image</li>
+</ul>
 
 
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">installimage</code></pre></div>
+
+
+<ul>
+<li><p>Configure partitions</p>
+
+<p>Use LVM so that we can take snapshots and live dumps.</p></li>
+</ul>
+
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">Filesystem                Size  Used Avail Use% Mounted on
+udev                       10M     <span class="m">0</span>   10M   0% /dev
+tmpfs                     1.2G  340K  1.2G   1% /run
+/dev/mapper/vg0-root       50G  3.0G   44G   7% /
+tmpfs                     5.0M     <span class="m">0</span>  5.0M   0% /run/lock
+tmpfs                     3.6G  3.1M  3.6G   1% /run/shm
+/dev/md0                  496M   40M  430M   9% /boot
+/dev/mapper/vg0-tmp       5.0G   33M  5.0G   1% /tmp
+/dev/mapper/vg0-home       20G   33M   20G   1% /home
+/dev/mapper/vg0-backup     75G   33M   75G   1% /backup
+/dev/mapper/vg0-vservers  500G  1.2G  499G   1% /vservers</code></pre></div>
+
+
+<ul>
+<li>Reboot</li>
+<li>Install suwappu::base</li>
+</ul>
+
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">knife bootstrap &lt;hw-node&gt; -r <span class="s1">&#39;suwappu::base&#39;</span></code></pre></div>
+
+
+<ul>
+<li>Add ssh-key to root and user</li>
+<li>Install sudo and configure for user</li>
+<li>Login to <a href="https://hw-node:8006">https://hw-node:8006</a></li>
+<li><p>Add storage</p>
+
+<p>Datacenter -> Storage add /vservers</p>
+
+<ul>
+<li>backup</li>
+<li>disk image</li>
+<li>container</li>
+</ul>
+</li>
+<li><p>Put in some containers</p></li>
+</ul>
 
 </div>
 
@@ -131,21 +171,15 @@ shops.suwappu.net bash: line 85: chef-client: <span class="nb">command </span>no
   
 
 
-<time datetime="2014-06-17T00:00:00+02:00" pubdate data-updated="true">Jun 17<sup>th</sup>, 2014</time>
+<time datetime="2014-09-03T13:10:15+02:00" pubdate data-updated="true">Sep 3<sup>rd</sup>, 2014</time>
       
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/chef/'>chef</a>, <a class='category' href='/blog/categories/server/'>server</a>
-  
-</span>
 
 
     </p>
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://aaiiit.github.io/blog/2014/06/17/chef-first-run-fails/" data-via="" data-counturl="http://aaiiit.github.io/blog/2014/06/17/chef-first-run-fails/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://aaiiit.github.io/blog/2014/09/03/install-proxmox-on-hetzner-server/" data-via="" data-counturl="http://aaiiit.github.io/blog/2014/09/03/install-proxmox-on-hetzner-server/" >Tweet</a>
   
   
   
@@ -154,10 +188,8 @@ shops.suwappu.net bash: line 85: chef-client: <span class="nb">command </span>no
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/06/13/using-sso/" title="Previous Post: Using SSO">&laquo; Using SSO</a>
+        <a class="basic-alignment left" href="/blog/2014/09/02/install-appserver-internal/" title="Previous Post: install-appserver-internal">&laquo; install-appserver-internal</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2014/06/23/rails4-engines-test/" title="Next Post: Rails 4 engines test">Rails 4 engines test &raquo;</a>
       
     </p>
   </footer>

@@ -5,14 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Chef Fails on Bootstrapping the First Time - Brainleak</title>
+  <title>Install-appserver-internal - Brainleak</title>
   <meta name="author" content="Mestdagh Tom">
 
   
-  <meta name="description" content="= Problem shops.suwappu.net Installing Chef Client...
-shops.suwappu.net --2014-06-17 10:12:40--
-https://www.opscode.com/chef/install.sh
-shops.suwappu &hellip;">
+  <meta name="description" content="Howto install an application server @ Suwappu 1 Create container on openvz hardware node 2 Install base software that all containers need 3 Configure &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,7 +18,7 @@ shops.suwappu &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://aaiiit.github.io/blog/2014/06/17/chef-first-run-fails">
+  <link rel="canonical" href="http://aaiiit.github.io/blog/2014/09/02/install-appserver-internal">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Brainleak" type="application/atom+xml">
@@ -71,7 +68,7 @@ shops.suwappu &hellip;">
   
   <header>
     
-      <h1 class="entry-title">Chef Fails on Bootstrapping the First Time</h1>
+      <h1 class="entry-title">Install-appserver-internal</h1>
     
     
       <p class="meta">
@@ -87,28 +84,21 @@ shops.suwappu &hellip;">
   
 
 
-<time datetime="2014-06-17T00:00:00+02:00" pubdate data-updated="true">Jun 17<sup>th</sup>, 2014</time>
+<time datetime="2014-09-02T09:41:55+02:00" pubdate data-updated="true">Sep 2<sup>nd</sup>, 2014</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>= Problem</p>
+<div class="entry-content"><h2>Howto install an application server @ Suwappu</h2>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">shops.suwappu.net Installing Chef Client...
-shops.suwappu.net --2014-06-17 10:12:40--
-https://www.opscode.com/chef/install.sh
-shops.suwappu.net Resolving www.opscode.com <span class="o">(</span>www.opscode.com<span class="o">)</span>... 184.106.28.90
-shops.suwappu.net Connecting to www.opscode.com
-<span class="o">(</span>www.opscode.com<span class="o">)</span><span class="p">|</span>184.106.28.90<span class="p">|</span>:443... connected.
-shops.suwappu.net ERROR: The certificate of <span class="sb">`</span>www.opscode.com<span class="err">&#39;</span> is not trusted.
-shops.suwappu.net Starting first Chef Client run...
-shops.suwappu.net bash: line 85: chef-client: <span class="nb">command </span>not found
-<span class="o">[</span>master<span class="o">][</span>/Code/suwappu/chef-resto/chef-repo-new<span class="o">]</span> librarian-chef</code></pre></div>
-
-
-
+<p>  1 Create container on openvz hardware node
+  2 Install base software that all containers need
+  3 Configure node
+  4 Install appserver
+  5 Install correct ruby version
+  6 Capify application</p>
 </div>
 
 
@@ -131,21 +121,15 @@ shops.suwappu.net bash: line 85: chef-client: <span class="nb">command </span>no
   
 
 
-<time datetime="2014-06-17T00:00:00+02:00" pubdate data-updated="true">Jun 17<sup>th</sup>, 2014</time>
+<time datetime="2014-09-02T09:41:55+02:00" pubdate data-updated="true">Sep 2<sup>nd</sup>, 2014</time>
       
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/chef/'>chef</a>, <a class='category' href='/blog/categories/server/'>server</a>
-  
-</span>
 
 
     </p>
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://aaiiit.github.io/blog/2014/06/17/chef-first-run-fails/" data-via="" data-counturl="http://aaiiit.github.io/blog/2014/06/17/chef-first-run-fails/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://aaiiit.github.io/blog/2014/09/02/install-appserver-internal/" data-via="" data-counturl="http://aaiiit.github.io/blog/2014/09/02/install-appserver-internal/" >Tweet</a>
   
   
   
@@ -154,10 +138,10 @@ shops.suwappu.net bash: line 85: chef-client: <span class="nb">command </span>no
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/06/13/using-sso/" title="Previous Post: Using SSO">&laquo; Using SSO</a>
+        <a class="basic-alignment left" href="/blog/2014/08/17/openvz-moving-containers/" title="Previous Post: OpenVZ moving containers">&laquo; OpenVZ moving containers</a>
       
       
-        <a class="basic-alignment right" href="/blog/2014/06/23/rails4-engines-test/" title="Next Post: Rails 4 engines test">Rails 4 engines test &raquo;</a>
+        <a class="basic-alignment right" href="/blog/2014/09/03/install-proxmox-on-hetzner-server/" title="Next Post: Install Proxmox on Hetzner server">Install Proxmox on Hetzner server &raquo;</a>
       
     </p>
   </footer>

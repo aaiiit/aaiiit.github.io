@@ -4,7 +4,7 @@
   <title><![CDATA[Brainleak]]></title>
   <link href="http://aaiiit.github.io/atom.xml" rel="self"/>
   <link href="http://aaiiit.github.io/"/>
-  <updated>2014-08-20T19:18:58+02:00</updated>
+  <updated>2014-09-03T15:07:53+02:00</updated>
   <id>http://aaiiit.github.io/</id>
   <author>
     <name><![CDATA[Mestdagh Tom]]></name>
@@ -12,6 +12,86 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Install Proxmox on Hetzner Server]]></title>
+    <link href="http://aaiiit.github.io/blog/2014/09/03/install-proxmox-on-hetzner-server/"/>
+    <updated>2014-09-03T13:10:15+02:00</updated>
+    <id>http://aaiiit.github.io/blog/2014/09/03/install-proxmox-on-hetzner-server</id>
+    <content type="html"><![CDATA[<ul>
+<li>Boot in rescue mode</li>
+<li>Set root passwd</li>
+<li>Install image</li>
+</ul>
+
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">installimage</code></pre></div>
+
+
+<ul>
+<li><p>Configure partitions</p>
+
+<p>Use LVM so that we can take snapshots and live dumps.</p></li>
+</ul>
+
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">Filesystem                Size  Used Avail Use% Mounted on
+udev                       10M     <span class="m">0</span>   10M   0% /dev
+tmpfs                     1.2G  340K  1.2G   1% /run
+/dev/mapper/vg0-root       50G  3.0G   44G   7% /
+tmpfs                     5.0M     <span class="m">0</span>  5.0M   0% /run/lock
+tmpfs                     3.6G  3.1M  3.6G   1% /run/shm
+/dev/md0                  496M   40M  430M   9% /boot
+/dev/mapper/vg0-tmp       5.0G   33M  5.0G   1% /tmp
+/dev/mapper/vg0-home       20G   33M   20G   1% /home
+/dev/mapper/vg0-backup     75G   33M   75G   1% /backup
+/dev/mapper/vg0-vservers  500G  1.2G  499G   1% /vservers</code></pre></div>
+
+
+<ul>
+<li>Reboot</li>
+<li>Install suwappu::base</li>
+</ul>
+
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">knife bootstrap &lt;hw-node&gt; -r <span class="s1">&#39;suwappu::base&#39;</span></code></pre></div>
+
+
+<ul>
+<li>Add ssh-key to root and user</li>
+<li>Install sudo and configure for user</li>
+<li>Login to <a href="https://hw-node:8006">https://hw-node:8006</a></li>
+<li><p>Add storage</p>
+
+<p>Datacenter -> Storage add /vservers</p>
+
+<ul>
+<li>backup</li>
+<li>disk image</li>
+<li>container</li>
+</ul>
+</li>
+<li><p>Put in some containers</p></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Install-appserver-internal]]></title>
+    <link href="http://aaiiit.github.io/blog/2014/09/02/install-appserver-internal/"/>
+    <updated>2014-09-02T09:41:55+02:00</updated>
+    <id>http://aaiiit.github.io/blog/2014/09/02/install-appserver-internal</id>
+    <content type="html"><![CDATA[<h2>Howto install an application server @ Suwappu</h2>
+
+<p>  1 Create container on openvz hardware node
+  2 Install base software that all containers need
+  3 Configure node
+  4 Install appserver
+  5 Install correct ruby version
+  6 Capify application</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[OpenVZ Moving Containers]]></title>
