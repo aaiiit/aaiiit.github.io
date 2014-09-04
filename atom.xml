@@ -4,7 +4,7 @@
   <title><![CDATA[Brainleak]]></title>
   <link href="http://aaiiit.github.io/atom.xml" rel="self"/>
   <link href="http://aaiiit.github.io/"/>
-  <updated>2014-09-03T15:07:53+02:00</updated>
+  <updated>2014-09-04T11:21:49+02:00</updated>
   <id>http://aaiiit.github.io/</id>
   <author>
     <name><![CDATA[Mestdagh Tom]]></name>
@@ -84,12 +84,84 @@ tmpfs                     3.6G  3.1M  3.6G   1% /run/shm
     <id>http://aaiiit.github.io/blog/2014/09/02/install-appserver-internal</id>
     <content type="html"><![CDATA[<h2>Howto install an application server @ Suwappu</h2>
 
-<p>  1 Create container on openvz hardware node
-  2 Install base software that all containers need
-  3 Configure node
-  4 Install appserver
-  5 Install correct ruby version
-  6 Capify application</p>
+<ul>
+<li>Add container to data bag openvz-instances hw-node</li>
+</ul>
+
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">knife data bag edit openvz-instances hw-node -e vim</code></pre></div>
+
+
+<ul>
+<li>Create specified container on openvz hardware node</li>
+</ul>
+
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">knife bootstrap hw-node -r <span class="s1">&#39;suwappu::openvz-instances&#39;</span></code></pre></div>
+
+
+<ul>
+<li>Install base software that all containers need</li>
+</ul>
+
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">knife bootstrap container -r <span class="s1">&#39;suwappu::base&#39;</span></code></pre></div>
+
+
+<ul>
+<li><p>Configure node</p>
+
+<p>node[&lsquo;app&rsquo;][&lsquo;name&rsquo;]</p></li>
+<li><p>Install appserver</p></li>
+</ul>
+
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">knife bootstrap container -r <span class="s1">&#39;suwappu::appserver&#39;</span></code></pre></div>
+
+
+<ul>
+<li>Install correct ruby version</li>
+</ul>
+
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">rvm install rbx-2.2.10</code></pre></div>
+
+
+<ul>
+<li>Capify application</li>
+<li>Run bundle on server</li>
+<li>Add SQL db to data bag sql-databases mysql-node</li>
+</ul>
+
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">knife data bag edit sql-databases mysql-node -e vim</code></pre></div>
+
+
+<ul>
+<li>Create specified SQL DB</li>
+</ul>
+
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">knife bootstrap mysql-node -r <span class="s1">&#39;suwappu::sql-databases&#39;</span></code></pre></div>
+
+
+<ul>
+<li>Add reverse proxy to data bag nginx-reverse-proxies nginx-node</li>
+</ul>
+
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">knife data bag edit nginx-reverse-proxies nginx-node -e vim</code></pre></div>
+
+
+<ul>
+<li>Create specified Reverse Proxy</li>
+</ul>
+
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">knife bootstrap nginx-node -r <span class="s1">&#39;suwappu::nginx-reverse-proxies&#39;</span></code></pre></div>
+
+
+
 ]]></content>
   </entry>
   
