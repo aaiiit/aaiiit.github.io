@@ -9,9 +9,7 @@
   <meta name="author" content="Mestdagh Tom">
 
   
-  <meta name="description" content="Boot in rescue mode
-Set root passwd
-Install image installimage Configure partitions Use LVM so that we can take snapshots and live dumps. Filesystem &hellip;">
+  <meta name="description" content="See https://www.intovps.com/client/knowledgebase/19/How-to-install-and-configure-OpenVPN.html Do not forget to enable client-to-client communication &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -67,6 +65,44 @@ Install image installimage Configure partitions Use LVM so that we can take snap
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/09/05/openvpn-server-setup/">OpenVPN Server Setup</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-09-05T11:37:34+02:00" pubdate data-updated="true">Sep 5<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>See <a href="https://www.intovps.com/client/knowledgebase/19/How-to-install-and-configure-OpenVPN.html">https://www.intovps.com/client/knowledgebase/19/How-to-install-and-configure-OpenVPN.html</a></p>
+
+<p>Do not forget to enable client-to-client communication in server.conf!</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -623,60 +659,6 @@ shops.suwappu.net bash: line 85: chef-client: <span class="nb">command </span>no
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/06/01/openvz-container-tun-tap/">OpenVZ Container TUN/TAP</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-06-01T00:00:00+02:00" pubdate data-updated="true">Jun 1<sup>st</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>While trying to use an OpenVZ container as an OpenVPN client,
-it seemed the container could not create the TUN device.</p>
-
-<p>See
-<a href="https://openvz.org/VPN_via_the_TUN/TAP_device">https://openvz.org/VPN_via_the_TUN/TAP_device</a></p>
-
-<p>OpenVZ containers have no TUN/TAP device.
-It is possible to grant the container access to tun/tap by doing :</p>
-
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">CTID</span><span class="o">=</span>101
-  vzctl <span class="nb">set</span> <span class="nv">$CTID</span> --devnodes net/tun:rw --save
-  vzctl <span class="nb">set</span> <span class="nv">$CTID</span> --devices c:10:200:rw --save
-  vzctl <span class="nb">set</span> <span class="nv">$CTID</span> --capability net_admin:on --save
-  vzctl <span class="nb">exec</span> <span class="nv">$CTID</span> mkdir -p /dev/net
-  vzctl <span class="nb">exec</span> <span class="nv">$CTID</span> mknod /dev/net/tun c <span class="m">10</span> 200
-  vzctl <span class="nb">exec</span> <span class="nv">$CTID</span> chmod <span class="m">600</span> /dev/net/tun</code></pre></div>
-
-
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -692,6 +674,10 @@ It is possible to grant the container access to tun/tap by doing :</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/09/05/openvpn-server-setup/">OpenVPN Server Setup</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/09/03/install-proxmox-on-hetzner-server/">Install Proxmox on Hetzner Server</a>
       </li>
     
@@ -705,10 +691,6 @@ It is possible to grant the container access to tun/tap by doing :</p>
     
       <li class="post">
         <a href="/blog/2014/08/03/internal-storage/">Internal Storage</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/08/03/books-to-read/">Books to Read</a>
       </li>
     
   </ul>

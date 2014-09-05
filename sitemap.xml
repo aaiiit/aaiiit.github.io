@@ -3,6 +3,12 @@
   
   
   <url>
+    <loc>http://aaiiit.github.io/blog/2014/09/05/openvpn-server-setup/</loc>
+    <lastmod>2014-09-05T11:37:34+02:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>http://aaiiit.github.io/blog/2014/09/03/install-proxmox-on-hetzner-server/</loc>
     <lastmod>2014-09-03T13:10:15+02:00</lastmod>
     <priority>0.8</priority>
@@ -119,14 +125,14 @@
   
   <url>
     <loc>http://aaiiit.github.io/blog/archives/</loc>
-    <lastmod>2014-09-04T11:21:49+02:00</lastmod>
+    <lastmod>2014-09-05T11:41:00+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://aaiiit.github.io/</loc>
-    <lastmod>2014-09-04T11:21:49+02:00</lastmod>
+    <lastmod>2014-09-05T11:41:00+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>

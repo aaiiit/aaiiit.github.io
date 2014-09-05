@@ -4,7 +4,7 @@
   <title><![CDATA[Brainleak]]></title>
   <link href="http://aaiiit.github.io/atom.xml" rel="self"/>
   <link href="http://aaiiit.github.io/"/>
-  <updated>2014-09-04T11:21:49+02:00</updated>
+  <updated>2014-09-05T11:41:00+02:00</updated>
   <id>http://aaiiit.github.io/</id>
   <author>
     <name><![CDATA[Mestdagh Tom]]></name>
@@ -12,6 +12,17 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[OpenVPN Server Setup]]></title>
+    <link href="http://aaiiit.github.io/blog/2014/09/05/openvpn-server-setup/"/>
+    <updated>2014-09-05T11:37:34+02:00</updated>
+    <id>http://aaiiit.github.io/blog/2014/09/05/openvpn-server-setup</id>
+    <content type="html"><![CDATA[<p>See <a href="https://www.intovps.com/client/knowledgebase/19/How-to-install-and-configure-OpenVPN.html">https://www.intovps.com/client/knowledgebase/19/How-to-install-and-configure-OpenVPN.html</a></p>
+
+<p>Do not forget to enable client-to-client communication in server.conf!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Install Proxmox on Hetzner Server]]></title>
