@@ -4,7 +4,7 @@
   <title><![CDATA[Brainleak]]></title>
   <link href="http://aaiiit.github.io/atom.xml" rel="self"/>
   <link href="http://aaiiit.github.io/"/>
-  <updated>2014-09-24T12:02:42+02:00</updated>
+  <updated>2014-09-24T13:59:05+02:00</updated>
   <id>http://aaiiit.github.io/</id>
   <author>
     <name><![CDATA[Mestdagh Tom]]></name>
@@ -12,6 +12,26 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Adding a VPN Client to Suwappu Network]]></title>
+    <link href="http://aaiiit.github.io/blog/2014/09/24/adding-a-vpn-client-to-suwappu-network/"/>
+    <updated>2014-09-24T13:51:31+02:00</updated>
+    <id>http://aaiiit.github.io/blog/2014/09/24/adding-a-vpn-client-to-suwappu-network</id>
+    <content type="html"><![CDATA[<p>To add an OpenVPN client to the Suwappu network, you need to do the following :</p>
+
+<ul>
+<li>Login to openvpn.suwappu.net</li>
+<li>cd /etc/openvpn/easy-rsa</li>
+<li>source ./vars</li>
+<li>/etc/openvpn/easy-rsa/suwappu_host_keys <client-name></li>
+<li>Logout OpenVPN server</li>
+<li>cp /var/lib/vz/private/1003/tmp/<client-name>.tar.gz /vservers/containers/private/1012/home/tom/</li>
+<li>knife bootstrap <client-name> -r &lsquo;suwappu::openvpn-client&rsquo;</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Add Custom Protocol Handler to Iceweasel]]></title>
@@ -26,15 +46,6 @@
 <li>network.protocol-handler.app.komodo: python /path/to/my/script.py (Path to a program to handle the request)</li>
 </ul>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Kbc-phishing-attack]]></title>
-    <link href="http://aaiiit.github.io/blog/2014/09/14/kbc-phishing-attack/"/>
-    <updated>2014-09-14T19:03:37+02:00</updated>
-    <id>http://aaiiit.github.io/blog/2014/09/14/kbc-phishing-attack</id>
-    <content type="html"><![CDATA[
 ]]></content>
   </entry>
   

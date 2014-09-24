@@ -9,7 +9,10 @@
   <meta name="author" content="Mestdagh Tom">
 
   
-  <meta name="description" content="You may try to edit Firefox/Iceweasel configuration via about:config: network.protocol-handler.expose.komodo: true (This protocol should be handled &hellip;">
+  <meta name="description" content="To add an OpenVPN client to the Suwappu network, you need to do the following : Login to openvpn.suwappu.net
+cd /etc/openvpn/easy-rsa
+source ./vars
+/ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -71,6 +74,53 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2014/09/24/adding-a-vpn-client-to-suwappu-network/">Adding a VPN Client to Suwappu Network</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-09-24T13:51:31+02:00" pubdate data-updated="true">Sep 24<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>To add an OpenVPN client to the Suwappu network, you need to do the following :</p>
+
+<ul>
+<li>Login to openvpn.suwappu.net</li>
+<li>cd /etc/openvpn/easy-rsa</li>
+<li>source ./vars</li>
+<li>/etc/openvpn/easy-rsa/suwappu_host_keys <client-name></li>
+<li>Logout OpenVPN server</li>
+<li>cp /var/lib/vz/private/1003/tmp/<client-name>.tar.gz /vservers/containers/private/1012/home/tom/</li>
+<li>knife bootstrap <client-name> -r &lsquo;suwappu::openvpn-client&rsquo;</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2014/09/24/add-custom-protocol-handler-to-iceweasel/">Add Custom Protocol Handler to Iceweasel</a></h1>
     
     
@@ -102,42 +152,6 @@
 <li>network.protocol-handler.app.komodo: python /path/to/my/script.py (Path to a program to handle the request)</li>
 </ul>
 
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/09/14/kbc-phishing-attack/">Kbc-phishing-attack</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-09-14T19:03:37+02:00" pubdate data-updated="true">Sep 14<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content">
 </div>
   
   
@@ -673,11 +687,11 @@ shops.suwappu.net bash: line 85: chef-client: <span class="nb">command </span>no
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2014/09/24/add-custom-protocol-handler-to-iceweasel/">Add Custom Protocol Handler to Iceweasel</a>
+        <a href="/blog/2014/09/24/adding-a-vpn-client-to-suwappu-network/">Adding a VPN Client to Suwappu Network</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2014/09/14/kbc-phishing-attack/">Kbc-phishing-attack</a>
+        <a href="/blog/2014/09/24/add-custom-protocol-handler-to-iceweasel/">Add Custom Protocol Handler to Iceweasel</a>
       </li>
     
       <li class="post">
