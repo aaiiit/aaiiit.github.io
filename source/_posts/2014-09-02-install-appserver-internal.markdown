@@ -69,4 +69,3 @@ Howto install an application server @ Suwappu
     knife bootstrap nginx-node -r 'suwappu::nginx-reverse-proxies'
     {% endhighlight %}
 
-
