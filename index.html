@@ -9,7 +9,7 @@
   <meta name="author" content="Mestdagh Tom">
 
   
-  <meta name="description" content="See https://www.intovps.com/client/knowledgebase/19/How-to-install-and-configure-OpenVPN.html Do not forget to enable client-to-client communication &hellip;">
+  <meta name="description" content="You may try to edit Firefox/Iceweasel configuration via about:config: network.protocol-handler.expose.komodo: true (This protocol should be handled &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,85 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/09/24/add-custom-protocol-handler-to-iceweasel/">Add Custom Protocol Handler to Iceweasel</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-09-24T12:00:45+02:00" pubdate data-updated="true">Sep 24<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>You may try to edit Firefox/Iceweasel configuration via about:config:</p>
+
+<ul>
+<li>network.protocol-handler.expose.komodo: true (This protocol should be handled either by the browser or by an external application)</li>
+<li>network.protocol-handler.external.komodo: true (This protocol should be handled by an external application)</li>
+<li>network.protocol-handler.app.komodo: python /path/to/my/script.py (Path to a program to handle the request)</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/09/14/kbc-phishing-attack/">Kbc-phishing-attack</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-09-14T19:03:37+02:00" pubdate data-updated="true">Sep 14<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -579,86 +658,6 @@ shops.suwappu.net bash: line 85: chef-client: <span class="nb">command </span>no
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/06/13/using-sso/">Using SSO</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-06-13T00:00:00+02:00" pubdate data-updated="true">Jun 13<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>These are some notes for the internal SSO Provider.</p>
-
-<ul>
-<li>Add before_filter :sign_in to actions that need to be secured</li>
-<li>Use current_user to get to the signed in User</li>
-<li><p>Add Omniauth initializer</p></li>
-<li><p>Something else</p></li>
-</ul>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/06/01/rails-4-js-compress/">Rails 4 JS Compress</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-06-01T00:00:00+02:00" pubdate data-updated="true">Jun 1<sup>st</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://blog.berylliumwork.com/2013/07/tips-on-rails-4-assets-compression-with.html">http://blog.berylliumwork.com/2013/07/tips-on-rails-4-assets-compression-with.html</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -674,6 +673,14 @@ shops.suwappu.net bash: line 85: chef-client: <span class="nb">command </span>no
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/09/24/add-custom-protocol-handler-to-iceweasel/">Add Custom Protocol Handler to Iceweasel</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/09/14/kbc-phishing-attack/">Kbc-phishing-attack</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/09/05/openvpn-server-setup/">OpenVPN Server Setup</a>
       </li>
     
@@ -683,14 +690,6 @@ shops.suwappu.net bash: line 85: chef-client: <span class="nb">command </span>no
     
       <li class="post">
         <a href="/blog/2014/09/02/install-appserver-internal/">Install-appserver-internal</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/08/17/openvz-moving-containers/">OpenVZ Moving Containers</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/08/03/internal-storage/">Internal Storage</a>
       </li>
     
   </ul>

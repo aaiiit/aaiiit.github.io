@@ -4,7 +4,7 @@
   <title><![CDATA[Brainleak]]></title>
   <link href="http://aaiiit.github.io/atom.xml" rel="self"/>
   <link href="http://aaiiit.github.io/"/>
-  <updated>2014-09-05T11:41:00+02:00</updated>
+  <updated>2014-09-24T12:02:42+02:00</updated>
   <id>http://aaiiit.github.io/</id>
   <author>
     <name><![CDATA[Mestdagh Tom]]></name>
@@ -12,6 +12,31 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Add Custom Protocol Handler to Iceweasel]]></title>
+    <link href="http://aaiiit.github.io/blog/2014/09/24/add-custom-protocol-handler-to-iceweasel/"/>
+    <updated>2014-09-24T12:00:45+02:00</updated>
+    <id>http://aaiiit.github.io/blog/2014/09/24/add-custom-protocol-handler-to-iceweasel</id>
+    <content type="html"><![CDATA[<p>You may try to edit Firefox/Iceweasel configuration via about:config:</p>
+
+<ul>
+<li>network.protocol-handler.expose.komodo: true (This protocol should be handled either by the browser or by an external application)</li>
+<li>network.protocol-handler.external.komodo: true (This protocol should be handled by an external application)</li>
+<li>network.protocol-handler.app.komodo: python /path/to/my/script.py (Path to a program to handle the request)</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Kbc-phishing-attack]]></title>
+    <link href="http://aaiiit.github.io/blog/2014/09/14/kbc-phishing-attack/"/>
+    <updated>2014-09-14T19:03:37+02:00</updated>
+    <id>http://aaiiit.github.io/blog/2014/09/14/kbc-phishing-attack</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[OpenVPN Server Setup]]></title>
@@ -544,35 +569,6 @@ Can alsy use Guard for other things.</p>
 <span class="k">end</span></code></pre></div>
 
 
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Books to Read]]></title>
-    <link href="http://aaiiit.github.io/blog/2014/05/27/books-to-read/"/>
-    <updated>2014-05-27T19:15:00+02:00</updated>
-    <id>http://aaiiit.github.io/blog/2014/05/27/books-to-read</id>
-    <content type="html"><![CDATA[<ul>
-<li>The Banker&rsquo;s Clothes</li>
-<li>The Housekeeper and the Professor</li>
-<li>The Circle</li>
-<li>Oil on the Brain: Adventures from the Pump to the Pipeline</li>
-</ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Interesting Blogs]]></title>
-    <link href="http://aaiiit.github.io/blog/2014/05/27/blogs/"/>
-    <updated>2014-05-27T19:15:00+02:00</updated>
-    <id>http://aaiiit.github.io/blog/2014/05/27/blogs</id>
-    <content type="html"><![CDATA[<ul>
-<li><a href="http://use-the-index-luke.com/blog">http://use-the-index-luke.com/blog</a></li>
-<li><a href="http://unenumerated.blogspot.com">Nick Szabo&rsquo;s Unenumerated</a></li>
-<li><a href="http://szabo.best.vwh.net">Nick Szabo&rsquo;s Essays&hellip;</a></li>
-</ul>
 
 ]]></content>
   </entry>
