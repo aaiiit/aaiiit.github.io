@@ -9,11 +9,8 @@
   <meta name="author" content="Mestdagh Tom">
 
   
-  <meta name="description" content="
-The Banker&rsquo;s Clothes
-The Housekeeper and the Professor
-The Circle
-Oil on the Brain: Adventures from the Pump to the Pipeline ">
+  <meta name="description" content="Use Guard, I like it better then autotest-rails.
+Can alsy use Guard for other things. Using Ruby stack : rbx-2.2.6@rails-zeromq Edit Gemfile, make &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,6 +66,70 @@ Oil on the Brain: Adventures from the Pump to the Pipeline ">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/05/27/rails-4.1-autotest-config/">Rails 4.1 Autotest Config</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-27T20:26:21+02:00" pubdate data-updated="true">May 27<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Use Guard, I like it better then autotest-rails.
+Can alsy use Guard for other things.</p>
+
+<p>Using Ruby stack : rbx-2.2.6@rails-zeromq</p>
+
+<p>Edit Gemfile, make sure it is in development group and not test group</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">group</span> <span class="ss">:development</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="err">‘</span><span class="n">guard</span><span class="o">-</span><span class="n">minitest</span><span class="err">’</span>
+<span class="k">end</span></code></pre></div>
+
+
+<p>guard init</p>
+
+<p>Edit Guardfile, config for rails 4</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">guard</span> <span class="ss">:minitest</span> <span class="k">do</span>
+  <span class="c1"># Rails 4</span>
+  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{^app/(.+)\.rb$}</span><span class="p">)</span>                               <span class="p">{</span> <span class="o">|</span><span class="n">m</span><span class="o">|</span> <span class="s2">&quot;test/</span><span class="si">#{</span><span class="n">m</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="si">}</span><span class="s2">_test.rb&quot;</span> <span class="p">}</span>
+  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{^app/controllers/application_controller\.rb$}</span><span class="p">)</span> <span class="p">{</span> <span class="s1">&#39;test/controllers&#39;</span> <span class="p">}</span>
+  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{^app/controllers/(.+)_controller\.rb$}</span><span class="p">)</span>        <span class="p">{</span> <span class="o">|</span><span class="n">m</span><span class="o">|</span> <span class="s2">&quot;test/integration/</span><span class="si">#{</span><span class="n">m</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="si">}</span><span class="s2">_test.rb&quot;</span> <span class="p">}</span>
+  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{^app/views/(.+)_mailer/.+}</span><span class="p">)</span>                   <span class="p">{</span> <span class="o">|</span><span class="n">m</span><span class="o">|</span> <span class="s2">&quot;test/mailers/</span><span class="si">#{</span><span class="n">m</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="si">}</span><span class="s2">_mailer_test.rb&quot;</span> <span class="p">}</span>
+  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{^lib/(.+)\.rb$}</span><span class="p">)</span>                               <span class="p">{</span> <span class="o">|</span><span class="n">m</span><span class="o">|</span> <span class="s2">&quot;test/lib/</span><span class="si">#{</span><span class="n">m</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="si">}</span><span class="s2">_test.rb&quot;</span> <span class="p">}</span>
+  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{^test/.+_test\.rb$}</span><span class="p">)</span>
+  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{^test/test_helper\.rb$}</span><span class="p">)</span> <span class="p">{</span> <span class="s1">&#39;test&#39;</span> <span class="p">}</span>
+<span class="k">end</span></code></pre></div>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -168,6 +229,10 @@ Oil on the Brain: Adventures from the Pump to the Pipeline ">
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/12/27/updating-my-capistrano-deployment-process-for-rails-4/">Updating My Capistrano Deployment Process for Rails 4</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/09/24/adding-a-vpn-client-to-suwappu-network/">Adding a VPN Client to Suwappu Network</a>
       </li>
     
@@ -181,10 +246,6 @@ Oil on the Brain: Adventures from the Pump to the Pipeline ">
     
       <li class="post">
         <a href="/blog/2014/09/03/install-proxmox-on-hetzner-server/">Install Proxmox on Hetzner Server</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/09/02/install-appserver-internal/">Install-appserver-internal</a>
       </li>
     
   </ul>

@@ -9,8 +9,10 @@
   <meta name="author" content="Mestdagh Tom">
 
   
-  <meta name="description" content="These are some notes for the internal SSO Provider. Add before_filter :sign_in to actions that need to be secured
-Use current_user to get to the &hellip;">
+  <meta name="description" content="= Problem shops.suwappu.net Installing Chef Client...
+shops.suwappu.net --2014-06-17 10:12:40--
+https://www.opscode.com/chef/install.sh
+shops.suwappu &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +68,56 @@ Use current_user to get to the &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/06/17/chef-first-run-fails/">Chef Fails on Bootstrapping the First Time</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-17T00:00:00+02:00" pubdate data-updated="true">Jun 17<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>= Problem</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">shops.suwappu.net Installing Chef Client...
+shops.suwappu.net --2014-06-17 10:12:40--
+https://www.opscode.com/chef/install.sh
+shops.suwappu.net Resolving www.opscode.com <span class="o">(</span>www.opscode.com<span class="o">)</span>... 184.106.28.90
+shops.suwappu.net Connecting to www.opscode.com
+<span class="o">(</span>www.opscode.com<span class="o">)</span><span class="p">|</span>184.106.28.90<span class="p">|</span>:443... connected.
+shops.suwappu.net ERROR: The certificate of <span class="sb">`</span>www.opscode.com<span class="err">&#39;</span> is not trusted.
+shops.suwappu.net Starting first Chef Client run...
+shops.suwappu.net bash: line 85: chef-client: <span class="nb">command </span>not found
+<span class="o">[</span>master<span class="o">][</span>/Code/suwappu/chef-resto/chef-repo-new<span class="o">]</span> librarian-chef</code></pre></div>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -511,70 +563,6 @@ Seems to work like bundler and stuff.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/05/27/rails-4.1-autotest-config/">Rails 4.1 Autotest Config</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-05-27T20:26:21+02:00" pubdate data-updated="true">May 27<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Use Guard, I like it better then autotest-rails.
-Can alsy use Guard for other things.</p>
-
-<p>Using Ruby stack : rbx-2.2.6@rails-zeromq</p>
-
-<p>Edit Gemfile, make sure it is in development group and not test group</p>
-
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">group</span> <span class="ss">:development</span> <span class="k">do</span>
-  <span class="n">gem</span> <span class="err">‘</span><span class="n">guard</span><span class="o">-</span><span class="n">minitest</span><span class="err">’</span>
-<span class="k">end</span></code></pre></div>
-
-
-<p>guard init</p>
-
-<p>Edit Guardfile, config for rails 4</p>
-
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">guard</span> <span class="ss">:minitest</span> <span class="k">do</span>
-  <span class="c1"># Rails 4</span>
-  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{^app/(.+)\.rb$}</span><span class="p">)</span>                               <span class="p">{</span> <span class="o">|</span><span class="n">m</span><span class="o">|</span> <span class="s2">&quot;test/</span><span class="si">#{</span><span class="n">m</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="si">}</span><span class="s2">_test.rb&quot;</span> <span class="p">}</span>
-  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{^app/controllers/application_controller\.rb$}</span><span class="p">)</span> <span class="p">{</span> <span class="s1">&#39;test/controllers&#39;</span> <span class="p">}</span>
-  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{^app/controllers/(.+)_controller\.rb$}</span><span class="p">)</span>        <span class="p">{</span> <span class="o">|</span><span class="n">m</span><span class="o">|</span> <span class="s2">&quot;test/integration/</span><span class="si">#{</span><span class="n">m</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="si">}</span><span class="s2">_test.rb&quot;</span> <span class="p">}</span>
-  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{^app/views/(.+)_mailer/.+}</span><span class="p">)</span>                   <span class="p">{</span> <span class="o">|</span><span class="n">m</span><span class="o">|</span> <span class="s2">&quot;test/mailers/</span><span class="si">#{</span><span class="n">m</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="si">}</span><span class="s2">_mailer_test.rb&quot;</span> <span class="p">}</span>
-  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{^lib/(.+)\.rb$}</span><span class="p">)</span>                               <span class="p">{</span> <span class="o">|</span><span class="n">m</span><span class="o">|</span> <span class="s2">&quot;test/lib/</span><span class="si">#{</span><span class="n">m</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="si">}</span><span class="s2">_test.rb&quot;</span> <span class="p">}</span>
-  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{^test/.+_test\.rb$}</span><span class="p">)</span>
-  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{^test/test_helper\.rb$}</span><span class="p">)</span> <span class="p">{</span> <span class="s1">&#39;test&#39;</span> <span class="p">}</span>
-<span class="k">end</span></code></pre></div>
-
-
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/3">&larr; Older</a>
@@ -592,6 +580,10 @@ Can alsy use Guard for other things.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/12/27/updating-my-capistrano-deployment-process-for-rails-4/">Updating My Capistrano Deployment Process for Rails 4</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/09/24/adding-a-vpn-client-to-suwappu-network/">Adding a VPN Client to Suwappu Network</a>
       </li>
     
@@ -605,10 +597,6 @@ Can alsy use Guard for other things.</p>
     
       <li class="post">
         <a href="/blog/2014/09/03/install-proxmox-on-hetzner-server/">Install Proxmox on Hetzner Server</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/09/02/install-appserver-internal/">Install-appserver-internal</a>
       </li>
     
   </ul>

@@ -4,7 +4,7 @@
   <title><![CDATA[Brainleak]]></title>
   <link href="http://aaiiit.github.io/atom.xml" rel="self"/>
   <link href="http://aaiiit.github.io/"/>
-  <updated>2014-09-24T13:59:05+02:00</updated>
+  <updated>2014-12-27T15:35:40+01:00</updated>
   <id>http://aaiiit.github.io/</id>
   <author>
     <name><![CDATA[Mestdagh Tom]]></name>
@@ -12,6 +12,127 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Updating My Capistrano Deployment Process for Rails 4]]></title>
+    <link href="http://aaiiit.github.io/blog/2014/12/27/updating-my-capistrano-deployment-process-for-rails-4/"/>
+    <updated>2014-12-27T15:14:37+01:00</updated>
+    <id>http://aaiiit.github.io/blog/2014/12/27/updating-my-capistrano-deployment-process-for-rails-4</id>
+    <content type="html"><![CDATA[<p>Now that I&rsquo;m getting at the point that I can update the different rails apps regularly,
+it&rsquo;s about time to update my deployment process.<br/>
+After every deploy I have to :</p>
+
+<ul>
+<li>Login to the host</li>
+<li>Navigate to app/current directory</li>
+<li>Run bundle</li>
+<li>Run rake assets:precompile</li>
+<li>Restart application server</li>
+</ul>
+
+
+<p>Fuck this!  Let&rsquo;s update.</p>
+
+<ul>
+<li>Add capistrano gems to Gemfile</li>
+</ul>
+
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">group</span> <span class="ss">:development</span> <span class="k">do</span>
+      <span class="n">gem</span> <span class="s1">&#39;capistrano&#39;</span><span class="p">,</span><span class="s1">&#39;3.2.1&#39;</span>
+      <span class="n">gem</span> <span class="s1">&#39;capistrano-rvm&#39;</span><span class="p">,</span> <span class="ss">github</span><span class="p">:</span> <span class="s1">&#39;capistrano/rvm&#39;</span>
+      <span class="n">gem</span> <span class="s1">&#39;capistrano-rails&#39;</span>
+      <span class="n">gem</span> <span class="s1">&#39;capistrano-bundler&#39;</span>
+    <span class="k">end</span></code></pre></div>
+
+
+<ul>
+<li>Require specific files in Capfile</li>
+</ul>
+
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># Load DSL and Setup Up Stages</span>
+    <span class="nb">require</span> <span class="s1">&#39;capistrano/setup&#39;</span>
+
+    <span class="c1"># Includes default deployment tasks</span>
+    <span class="nb">require</span> <span class="s1">&#39;capistrano/rvm&#39;</span>
+    <span class="nb">require</span> <span class="s1">&#39;capistrano/deploy&#39;</span>
+    <span class="nb">require</span> <span class="s1">&#39;capistrano/rails&#39;</span>
+    <span class="nb">require</span> <span class="s1">&#39;capistrano/rails/migrations&#39;</span>
+
+    <span class="c1"># Loads custom tasks from `lib/capistrano/tasks&#39; if you have any defined.</span>
+    <span class="no">Dir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;lib/capistrano/tasks/*.rake&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">r</span><span class="o">|</span> <span class="n">import</span> <span class="n">r</span> <span class="p">}</span></code></pre></div>
+
+
+<ul>
+<li>Update deploy.rb</li>
+</ul>
+
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># config valid only for Capistrano 3.1</span>
+    <span class="n">lock</span> <span class="s1">&#39;3.2.1&#39;</span>
+
+    <span class="n">set</span> <span class="ss">:application</span><span class="p">,</span> <span class="s1">&#39;shops&#39;</span>
+    <span class="n">set</span> <span class="ss">:repo_url</span><span class="p">,</span> <span class="s1">&#39;git@dev.suwappu.net:suwappu/shops.git&#39;</span>
+
+    <span class="n">set</span> <span class="ss">:deploy_to</span><span class="p">,</span> <span class="s1">&#39;/nfs/apps/shops_production&#39;</span>
+
+    <span class="n">set</span> <span class="ss">:ssh_options</span><span class="p">,</span> <span class="p">{</span>
+      <span class="ss">forward_agent</span><span class="p">:</span> <span class="kp">true</span>
+    <span class="p">}</span>
+
+    <span class="n">set</span> <span class="ss">:pty</span><span class="p">,</span> <span class="kp">true</span>
+    <span class="n">set</span> <span class="ss">:linked_dirs</span><span class="p">,</span> <span class="sx">%w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle</span>
+<span class="sx">      public/system}</span>
+
+    <span class="c1"># Default value for default_env is {}</span>
+    <span class="c1"># set :default_env, { path: &quot;/opt/rbenv/shims:$PATH&quot; }</span>
+
+    <span class="n">set</span> <span class="ss">:rvm_type</span><span class="p">,</span> <span class="ss">:user</span>                     <span class="c1"># Defaults to: :auto</span>
+    <span class="n">set</span> <span class="ss">:rvm_ruby_version</span><span class="p">,</span> <span class="s1">&#39;rbx-2.2.10&#39;</span>      <span class="c1"># Defaults to: &#39;default&#39;</span>
+    <span class="n">set</span> <span class="ss">:rvm_custom_path</span><span class="p">,</span> <span class="s1">&#39;/usr/local/rvm&#39;</span>  <span class="c1"># only needed if not detected</span>
+
+    <span class="n">stage</span> <span class="o">=</span> <span class="s2">&quot;production&quot;</span>
+    <span class="n">shared_path</span> <span class="o">=</span> <span class="s2">&quot;/nfs/apps/shops_production/shared&quot;</span>
+    <span class="n">puma_sock</span>    <span class="o">=</span> <span class="s2">&quot;unix://</span><span class="si">#{</span><span class="n">shared_path</span><span class="si">}</span><span class="s2">/sockets/puma.sock&quot;</span>
+    <span class="n">puma_control</span> <span class="o">=</span> <span class="s2">&quot;unix://</span><span class="si">#{</span><span class="n">shared_path</span><span class="si">}</span><span class="s2">/sockets/pumactl.sock&quot;</span>
+    <span class="n">puma_state</span>   <span class="o">=</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">shared_path</span><span class="si">}</span><span class="s2">/sockets/puma.state&quot;</span>
+    <span class="n">puma_log</span>     <span class="o">=</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">shared_path</span><span class="si">}</span><span class="s2">/log/puma-</span><span class="si">#{</span><span class="n">stage</span><span class="si">}</span><span class="s2">.log&quot;</span>
+
+    <span class="n">namespace</span> <span class="ss">:deploy</span> <span class="k">do</span>
+      <span class="n">desc</span> <span class="s1">&#39;Restart application&#39;</span>
+      <span class="n">task</span> <span class="ss">:restart</span> <span class="k">do</span>
+        <span class="n">on</span> <span class="n">roles</span><span class="p">(</span><span class="ss">:app</span><span class="p">),</span> <span class="k">in</span><span class="p">:</span> <span class="ss">:sequence</span><span class="p">,</span> <span class="ss">wait</span><span class="p">:</span> <span class="mi">5</span> <span class="k">do</span>
+          <span class="c1"># Your restart mechanism here, for example:</span>
+          <span class="c1"># execute :touch, release_path.join(&#39;tmp/restart.txt&#39;)</span>
+          <span class="n">execute</span> <span class="s1">&#39;sudo /etc/init.d/puma restart&#39;</span>
+        <span class="k">end</span>
+      <span class="k">end</span>
+
+      <span class="n">desc</span> <span class="s1">&#39;Resetting DB &amp; seeding&#39;</span>
+      <span class="n">task</span> <span class="ss">:db_reset_and_seed</span> <span class="k">do</span>
+        <span class="n">on</span> <span class="n">roles</span><span class="p">(</span><span class="ss">:app</span><span class="p">)</span> <span class="k">do</span>
+          <span class="n">within</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">current_path</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">do</span>
+            <span class="n">with</span> <span class="ss">rails_env</span><span class="p">:</span> <span class="ss">:production</span> <span class="k">do</span>
+              <span class="n">execute</span> <span class="ss">:rake</span><span class="p">,</span> <span class="s2">&quot;db:migrate:reset&quot;</span>
+              <span class="n">execute</span> <span class="ss">:rake</span><span class="p">,</span> <span class="s2">&quot;db:seed&quot;</span>
+            <span class="k">end</span>
+          <span class="k">end</span>
+        <span class="k">end</span>
+      <span class="k">end</span>
+
+      <span class="n">after</span> <span class="ss">:publishing</span><span class="p">,</span> <span class="ss">:restart</span>
+
+      <span class="n">after</span> <span class="ss">:restart</span><span class="p">,</span> <span class="ss">:clear_cache</span> <span class="k">do</span>
+        <span class="n">on</span> <span class="n">roles</span><span class="p">(</span><span class="ss">:web</span><span class="p">),</span> <span class="k">in</span><span class="p">:</span> <span class="ss">:groups</span><span class="p">,</span> <span class="ss">limit</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="ss">wait</span><span class="p">:</span> <span class="mi">10</span> <span class="k">do</span>
+        <span class="k">end</span>
+      <span class="k">end</span>
+    <span class="k">end</span></code></pre></div>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Adding a VPN Client to Suwappu Network]]></title>
@@ -543,43 +664,6 @@ Seems to work like bundler and stuff.</p>
     <content type="html"><![CDATA[<ul>
 <li><a href="http://www.linuxvoice.com/be-a-kernel-hacker">http://www.linuxvoice.com/be-a-kernel-hacker/</a></li>
 </ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Rails 4.1 Autotest Config]]></title>
-    <link href="http://aaiiit.github.io/blog/2014/05/27/rails-4.1-autotest-config/"/>
-    <updated>2014-05-27T20:26:21+02:00</updated>
-    <id>http://aaiiit.github.io/blog/2014/05/27/rails-4.1-autotest-config</id>
-    <content type="html"><![CDATA[<p>Use Guard, I like it better then autotest-rails.
-Can alsy use Guard for other things.</p>
-
-<p>Using Ruby stack : rbx-2.2.6@rails-zeromq</p>
-
-<p>Edit Gemfile, make sure it is in development group and not test group</p>
-
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">group</span> <span class="ss">:development</span> <span class="k">do</span>
-  <span class="n">gem</span> <span class="err">‘</span><span class="n">guard</span><span class="o">-</span><span class="n">minitest</span><span class="err">’</span>
-<span class="k">end</span></code></pre></div>
-
-
-<p>guard init</p>
-
-<p>Edit Guardfile, config for rails 4</p>
-
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">guard</span> <span class="ss">:minitest</span> <span class="k">do</span>
-  <span class="c1"># Rails 4</span>
-  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{^app/(.+)\.rb$}</span><span class="p">)</span>                               <span class="p">{</span> <span class="o">|</span><span class="n">m</span><span class="o">|</span> <span class="s2">&quot;test/</span><span class="si">#{</span><span class="n">m</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="si">}</span><span class="s2">_test.rb&quot;</span> <span class="p">}</span>
-  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{^app/controllers/application_controller\.rb$}</span><span class="p">)</span> <span class="p">{</span> <span class="s1">&#39;test/controllers&#39;</span> <span class="p">}</span>
-  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{^app/controllers/(.+)_controller\.rb$}</span><span class="p">)</span>        <span class="p">{</span> <span class="o">|</span><span class="n">m</span><span class="o">|</span> <span class="s2">&quot;test/integration/</span><span class="si">#{</span><span class="n">m</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="si">}</span><span class="s2">_test.rb&quot;</span> <span class="p">}</span>
-  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{^app/views/(.+)_mailer/.+}</span><span class="p">)</span>                   <span class="p">{</span> <span class="o">|</span><span class="n">m</span><span class="o">|</span> <span class="s2">&quot;test/mailers/</span><span class="si">#{</span><span class="n">m</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="si">}</span><span class="s2">_mailer_test.rb&quot;</span> <span class="p">}</span>
-  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{^lib/(.+)\.rb$}</span><span class="p">)</span>                               <span class="p">{</span> <span class="o">|</span><span class="n">m</span><span class="o">|</span> <span class="s2">&quot;test/lib/</span><span class="si">#{</span><span class="n">m</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="si">}</span><span class="s2">_test.rb&quot;</span> <span class="p">}</span>
-  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{^test/.+_test\.rb$}</span><span class="p">)</span>
-  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{^test/test_helper\.rb$}</span><span class="p">)</span> <span class="p">{</span> <span class="s1">&#39;test&#39;</span> <span class="p">}</span>
-<span class="k">end</span></code></pre></div>
-
-
 
 ]]></content>
   </entry>
