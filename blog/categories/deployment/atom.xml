@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Deployment | Brainleak]]></title>
   <link href="http://aaiiit.github.io/blog/categories/deployment/atom.xml" rel="self"/>
   <link href="http://aaiiit.github.io/"/>
-  <updated>2014-12-27T15:35:40+01:00</updated>
+  <updated>2014-12-27T15:41:20+01:00</updated>
   <id>http://aaiiit.github.io/</id>
   <author>
     <name><![CDATA[Mestdagh Tom]]></name>
@@ -127,6 +127,10 @@ After every deploy I have to :</p>
 <span class="sr">end</span></code></pre></div></p></li>
 </ul>
 
+
+<p>Application server is not restarted yet.<br/>
+I&rsquo;ll give it some time to fix, but if it takes to long I&rsquo;ll just leave it open.
+After separating web and zmq-backend we&rsquo;ll be using a different application server.</p>
 ]]></content>
   </entry>
   
