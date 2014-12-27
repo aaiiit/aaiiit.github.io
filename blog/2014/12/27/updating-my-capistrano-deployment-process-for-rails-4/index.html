@@ -205,8 +205,20 @@ After every deploy I have to :</p>
 
 
 <p>Application server is not restarted yet.<br/>
-I&rsquo;ll give it some time to fix, but if it takes to long I&rsquo;ll just leave it open.
-After separating web and zmq-backend we&rsquo;ll be using a different application server.</p>
+<del>I&rsquo;ll give it some time to fix, but if it takes to long I&rsquo;ll just leave it open.</del></p>
+
+<p>It was because of the very weak bootscript for the application server.
+Changed it to :</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">echo</span> -n <span class="s2">&quot;Restarting Puma server for $APP...&quot;</span>
+    su - <span class="nv">$USR</span> -c <span class="s2">&quot;kill -s SIGTERM `cat $PID`&quot;</span>
+    rm /nfs/apps/shops_production/shared/tmp/pids/*
+    su - <span class="nv">$USR</span> -c <span class="s2">&quot;cd $APP/current ; bundle exec thin start -p 8080 -e $ENV -P $PID -d&quot;</span>
+    <span class="nb">echo</span> <span class="s2">&quot;[ Done ]&quot;</span></code></pre></div>
+
+
+<p>After separating web and zmq-backend we&rsquo;ll be using a different application server.
+Then I&rsquo;ll look to upgrade the application bootscript.</p>
 </div>
 
 
