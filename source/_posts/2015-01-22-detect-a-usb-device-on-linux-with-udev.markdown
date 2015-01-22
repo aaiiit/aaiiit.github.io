@@ -31,3 +31,8 @@ Adding a udev rule should do the trick.
     ATTR{idProduct}=="2214",RUN+="/etc/init.d/barcodescanner start"
     {% endhighlight %}
 
+  * Reload the rules or reboot
+    {% highlight bash %}
+    udevadm control --reload-rules
+    {% endhighlight %}
+
