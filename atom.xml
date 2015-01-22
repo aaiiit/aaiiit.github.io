@@ -4,7 +4,7 @@
   <title><![CDATA[Brainleak]]></title>
   <link href="http://aaiiit.github.io/atom.xml" rel="self"/>
   <link href="http://aaiiit.github.io/"/>
-  <updated>2015-01-22T18:18:40+01:00</updated>
+  <updated>2015-01-22T18:20:42+01:00</updated>
   <id>http://aaiiit.github.io/</id>
   <author>
     <name><![CDATA[Mestdagh Tom]]></name>
@@ -44,6 +44,14 @@ and idProduct point to the ID we got from lsusb</p></li>
 
 <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">ACTION</span><span class="o">==</span><span class="s2">&quot;add&quot;</span>,SUBSYSTEM<span class="o">==</span><span class="s2">&quot;usb&quot;</span>,ATTR<span class="o">{</span>idVendor<span class="o">}==</span><span class="s2">&quot;05f9&quot;</span>,
     ATTR<span class="o">{</span>idProduct<span class="o">}==</span><span class="s2">&quot;2214&quot;</span>,RUN+<span class="o">=</span><span class="s2">&quot;/etc/init.d/barcodescanner start&quot;</span></code></pre></div>
+
+
+<ul>
+<li>Reload the rules or reboot</li>
+</ul>
+
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">udevadm control --reload-rules</code></pre></div>
 
 
 
