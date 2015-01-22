@@ -110,6 +110,25 @@ Fuck this!  Let's update.
     {% endhighlight %}
 
 
+Application server is not restarted yet.  
+~~I'll give it some time to fix, but if it takes to long I'll just leave it open.~~
+
+It was because of the very weak bootscript for the application server.
+Changed it to :
+
+    {% highlight bash %}
+    echo -n "Restarting Puma server for $APP..."
+    su - $USR -c "kill -s SIGTERM `cat $PID`"
+    rm /nfs/apps/shops_production/shared/tmp/pids/*
+    su - $USR -c "cd $APP/current ; bundle exec thin start -p 8080 -e $ENV -P $PID -d"
+    echo "[ Done ]"
+    {% endhighlight %}
+
+
+After separating web and zmq-backend we'll be using a different application server.
+Then I'll look to upgrade the application bootscript.
+
+
 
 
 
