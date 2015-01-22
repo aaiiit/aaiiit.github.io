@@ -9,8 +9,9 @@
   <meta name="author" content="Mestdagh Tom">
 
   
-  <meta name="description" content="Now that I&rsquo;m getting at the point that I can update the different rails apps regularly,
-it&rsquo;s about time to update my deployment process. &hellip;">
+  <meta name="description" content="I needed a way to start an application when a device is
+connected to the RPi. In this example the barcodescanner
+software should start when we &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +67,70 @@ it&rsquo;s about time to update my deployment process. &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/01/22/detect-a-usb-device-on-linux-with-udev/">Detect a USB Device on Linux With Udev</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-22T17:02:34+01:00" pubdate data-updated="true">Jan 22<sup>nd</sup>, 2015</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I needed a way to start an application when a device is
+connected to the RPi.  In this example the barcodescanner
+software should start when we connect the scanner.
+Adding a udev rule should do the trick.</p>
+
+<ul>
+<li>First get the ID of the specific device</li>
+</ul>
+
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">lsusb
+
+    Bus <span class="m">001</span> Device 006: ID 05f9:2214 PSC Scanning, Inc. 
+    Bus <span class="m">001</span> Device 004: ID 0a5f:0015 Zebra</code></pre></div>
+
+
+<ul>
+<li><p>Add the rules file located in /etc/udev/rules.d/,
+for instance /etc/udev/rules.d/85-custom_usb_device_rules.rules</p></li>
+<li><p>Add the rule to detect scanner and start software, the idVendor
+and idProduct point to the ID we got from lsusb</p></li>
+</ul>
+
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">ACTION</span><span class="o">==</span><span class="s2">&quot;add&quot;</span>,SUBSYSTEM<span class="o">==</span><span class="s2">&quot;usb&quot;</span>,ATTR<span class="o">{</span>idVendor<span class="o">}==</span><span class="s2">&quot;05f9&quot;</span>,
+    ATTR<span class="o">{</span>idProduct<span class="o">}==</span><span class="s2">&quot;2214&quot;</span>,RUN+<span class="o">=</span><span class="s2">&quot;/etc/init.d/barcodescanner start&quot;</span></code></pre></div>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -715,73 +780,6 @@ Clients use /data-1 as mountpoint.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/06/23/rails4-engines-test/">Rails 4 Engines Test</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-06-23T00:00:00+02:00" pubdate data-updated="true">Jun 23<sup>rd</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Testing is broken out of the box!
-This is how you fix it :</p>
-
-<p>test/test_helper.rb</p>
-
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># Configure Rails Environment</span>
-<span class="no">ENV</span><span class="o">[</span><span class="s2">&quot;RAILS_ENV&quot;</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;test&quot;</span>
-
-<span class="nb">require</span> <span class="no">File</span><span class="o">.</span><span class="n">expand_path</span><span class="p">(</span><span class="s2">&quot;../dummy/config/environment.rb&quot;</span><span class="p">,</span>  <span class="bp">__FILE__</span><span class="p">)</span>
-<span class="nb">require</span> <span class="s2">&quot;rails/test_help&quot;</span>
-
-<span class="no">Rails</span><span class="o">.</span><span class="n">backtrace_cleaner</span><span class="o">.</span><span class="n">remove_silencers!</span>
-
-<span class="c1"># Load support files</span>
-<span class="no">Dir</span><span class="o">[</span><span class="s2">&quot;</span><span class="si">#{</span><span class="no">File</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="bp">__FILE__</span><span class="p">)</span><span class="si">}</span><span class="s2">/support/**/*.rb&quot;</span><span class="o">].</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span> <span class="nb">require</span> <span class="n">f</span> <span class="p">}</span>
-
-<span class="c1"># Load fixtures from the engine</span>
-<span class="no">ActiveSupport</span><span class="o">::</span><span class="no">TestCase</span><span class="o">.</span><span class="n">fixture_path</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">expand_path</span><span class="p">(</span><span class="s2">&quot;../fixtures&quot;</span><span class="p">,</span> <span class="bp">__FILE__</span><span class="p">)</span>
-
-<span class="k">class</span> <span class="nc">ActiveSupport</span><span class="o">::</span><span class="no">TestCase</span>
-  <span class="n">fixtures</span> <span class="ss">:all</span>
-<span class="k">end</span>
-
-<span class="c1">#fixes other problems with controller tests (url helpers)</span>
-<span class="k">class</span> <span class="nc">ActionController</span><span class="o">::</span><span class="no">TestCase</span>
-  <span class="n">setup</span> <span class="k">do</span>
-    <span class="vi">@routes</span> <span class="o">=</span> <span class="no">Users</span><span class="o">::</span><span class="no">Engine</span><span class="o">.</span><span class="n">routes</span>
-  <span class="k">end</span>
-<span class="k">end</span></code></pre></div>
-
-
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -795,6 +793,10 @@ This is how you fix it :</p>
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/01/22/detect-a-usb-device-on-linux-with-udev/">Detect a USB Device on Linux With Udev</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2014/12/27/updating-my-capistrano-deployment-process-for-rails-4/">Updating My Capistrano Deployment Process for Rails 4</a>
@@ -812,10 +814,6 @@ This is how you fix it :</p>
         <a href="/blog/2014/09/05/openvpn-server-setup/">OpenVPN Server Setup</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2014/09/03/install-proxmox-on-hetzner-server/">Install Proxmox on Hetzner Server</a>
-      </li>
-    
   </ul>
 </section>
 
@@ -829,7 +827,7 @@ This is how you fix it :</p>
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2014 - Mestdagh Tom -
+  Copyright &copy; 2015 - Mestdagh Tom -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Brainleak]]></title>
   <link href="http://aaiiit.github.io/atom.xml" rel="self"/>
   <link href="http://aaiiit.github.io/"/>
-  <updated>2014-12-27T16:33:01+01:00</updated>
+  <updated>2015-01-22T18:18:40+01:00</updated>
   <id>http://aaiiit.github.io/</id>
   <author>
     <name><![CDATA[Mestdagh Tom]]></name>
@@ -12,6 +12,43 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Detect a USB Device on Linux With Udev]]></title>
+    <link href="http://aaiiit.github.io/blog/2015/01/22/detect-a-usb-device-on-linux-with-udev/"/>
+    <updated>2015-01-22T17:02:34+01:00</updated>
+    <id>http://aaiiit.github.io/blog/2015/01/22/detect-a-usb-device-on-linux-with-udev</id>
+    <content type="html"><![CDATA[<p>I needed a way to start an application when a device is
+connected to the RPi.  In this example the barcodescanner
+software should start when we connect the scanner.
+Adding a udev rule should do the trick.</p>
+
+<ul>
+<li>First get the ID of the specific device</li>
+</ul>
+
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">lsusb
+
+    Bus <span class="m">001</span> Device 006: ID 05f9:2214 PSC Scanning, Inc. 
+    Bus <span class="m">001</span> Device 004: ID 0a5f:0015 Zebra</code></pre></div>
+
+
+<ul>
+<li><p>Add the rules file located in /etc/udev/rules.d/,
+for instance /etc/udev/rules.d/85-custom_usb_device_rules.rules</p></li>
+<li><p>Add the rule to detect scanner and start software, the idVendor
+and idProduct point to the ID we got from lsusb</p></li>
+</ul>
+
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">ACTION</span><span class="o">==</span><span class="s2">&quot;add&quot;</span>,SUBSYSTEM<span class="o">==</span><span class="s2">&quot;usb&quot;</span>,ATTR<span class="o">{</span>idVendor<span class="o">}==</span><span class="s2">&quot;05f9&quot;</span>,
+    ATTR<span class="o">{</span>idProduct<span class="o">}==</span><span class="s2">&quot;2214&quot;</span>,RUN+<span class="o">=</span><span class="s2">&quot;/etc/init.d/barcodescanner start&quot;</span></code></pre></div>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Updating My Capistrano Deployment Process for Rails 4]]></title>
@@ -665,18 +702,6 @@ Seems to work like bundler and stuff.</p>
 <li>install Ruby zmq library</li>
 </ul>
 </li>
-</ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Articles to Read]]></title>
-    <link href="http://aaiiit.github.io/blog/2014/05/27/articles-to-read/"/>
-    <updated>2014-05-27T23:15:00+02:00</updated>
-    <id>http://aaiiit.github.io/blog/2014/05/27/articles-to-read</id>
-    <content type="html"><![CDATA[<ul>
-<li><a href="http://www.linuxvoice.com/be-a-kernel-hacker">http://www.linuxvoice.com/be-a-kernel-hacker/</a></li>
 </ul>
 
 ]]></content>
