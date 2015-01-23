@@ -36,3 +36,13 @@ Adding a udev rule should do the trick.
     udevadm control --reload-rules
     {% endhighlight %}
 
+
+
+# List of ID's
+
+  | Device          | ID        | ID        |
+  |-----------------|-----------|-----------|
+  | Barcodescanner  | 05f9:2214 |           |
+  | Zebra Printer   | 0a5f:0015 |           |
+  | Dacal DC-300    | 04b4:5a9b | 04b4:5203 |
+
