@@ -4,7 +4,7 @@
   <title><![CDATA[Brainleak]]></title>
   <link href="http://aaiiit.github.io/atom.xml" rel="self"/>
   <link href="http://aaiiit.github.io/"/>
-  <updated>2015-01-23T10:34:53+01:00</updated>
+  <updated>2015-02-13T17:27:25+01:00</updated>
   <id>http://aaiiit.github.io/</id>
   <author>
     <name><![CDATA[Mestdagh Tom]]></name>
@@ -12,6 +12,50 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Creating a Currency Textfield in AngularJS]]></title>
+    <link href="http://aaiiit.github.io/blog/2015/02/13/creating-a-currency-textfield-in-angularjs/"/>
+    <updated>2015-02-13T17:12:29+01:00</updated>
+    <id>http://aaiiit.github.io/blog/2015/02/13/creating-a-currency-textfield-in-angularjs</id>
+    <content type="html"><![CDATA[<p>When working with currencies I have the tendency to store
+the value in the database as an INT value, to encounter less rounding errors.
+The value shown is 99.99 while the persisted value is 9999.</p>
+
+<p>AngularJS Directive seems to be a great way to make a custom textfield.</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">app</span><span class="o">.</span><span class="n">directive</span><span class="p">(</span><span class="s2">&quot;currencyField&quot;</span><span class="p">,</span><span class="o">[</span><span class="s1">&#39;$sce&#39;</span><span class="p">,</span><span class="n">function</span><span class="p">(</span><span class="vg">$sce</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="p">{</span>
+        <span class="ss">restrict</span><span class="p">:</span> <span class="s1">&#39;AE&#39;</span><span class="p">,</span>
+        <span class="nb">require</span><span class="p">:</span> <span class="s1">&#39;ngModel&#39;</span><span class="p">,</span>
+        <span class="ss">template</span><span class="p">:</span> <span class="s1">&#39;&lt;input type=&quot;text&quot; min=&quot;0.0&quot; step=&quot;0.01&quot; size=&quot;4&quot; /&gt;&#39;</span><span class="p">,</span>
+        <span class="ss">replace</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span>
+        <span class="ss">link</span><span class="p">:</span> <span class="n">function</span><span class="p">(</span><span class="n">scope</span><span class="p">,</span><span class="n">elem</span><span class="p">,</span><span class="n">attrs</span><span class="p">,</span><span class="n">ngModel</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">ngModel</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
+          <span class="n">function</span> <span class="n">centsToEuro</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">value</span> <span class="o">/</span> <span class="mi">100</span><span class="o">.</span><span class="mi">0</span><span class="p">;</span>
+          <span class="p">}</span>
+
+          <span class="n">function</span> <span class="n">euroToCents</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">parseInt</span><span class="p">(</span><span class="n">value</span> <span class="o">*</span> <span class="mi">100</span><span class="p">);</span>
+          <span class="p">}</span>
+
+          <span class="n">ngModel</span><span class="o">.</span><span class="vg">$parsers</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">euroToCents</span><span class="p">);</span>
+          <span class="n">ngModel</span><span class="o">.</span><span class="vg">$formatters</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">centsToEuro</span><span class="p">);</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span><span class="o">]</span><span class="p">);</span></code></pre></div>
+
+
+<p>To use it, just add currency-field to input field</p>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;input</span> <span class="na">currency-field</span> <span class="na">ng-model=</span><span class="s">&quot;saleitem.price&quot;</span> <span class="na">ng-blur=</span><span class="s">&quot;update(saleitem)&quot;</span> <span class="na">placeholder=</span><span class="s">&quot;price&quot;</span> <span class="nt">/&gt;</span></code></pre></div>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Detect a USB Device on Linux With Udev]]></title>
@@ -696,48 +740,6 @@ have to drop the quota before applying the new changes.</p>
 <li>rm /var/vzquota/quota.110</li>
 <li>vzquota drop 110</li>
 <li>vzctl start 110</li>
-</ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Using Librarian Chef]]></title>
-    <link href="http://aaiiit.github.io/blog/2014/05/30/librarian-chef/"/>
-    <updated>2014-05-30T00:00:00+02:00</updated>
-    <id>http://aaiiit.github.io/blog/2014/05/30/librarian-chef</id>
-    <content type="html"><![CDATA[<p>Chef Repo should have Cheffile.<br/>
-Seems to work like bundler and stuff.</p>
-
-<p>Add needed cookbooks to file</p>
-
-<p>  cookbook &lsquo;zeromq&rsquo;,:git => &lsquo;<a href="https://github.com/plu/zeromq-cookbook">https://github.com/plu/zeromq-cookbook</a>&rsquo;</p>
-
-<p>Run librarian-chef install to install new cookbooks</p>
-
-<h1>Roles</h1>
-
-<ul>
-<li><p>base</p>
-
-<ul>
-<li>add deployer user with ssh key</li>
-<li>apt-get update</li>
-</ul>
-</li>
-<li><p>zeromq</p>
-
-<ul>
-<li>install zeromq</li>
-</ul>
-</li>
-<li><p>ruby-zeromq</p>
-
-<ul>
-<li>install ruby (Rubinius 2.2.6)</li>
-<li>install Ruby zmq library</li>
-</ul>
-</li>
 </ul>
 
 ]]></content>

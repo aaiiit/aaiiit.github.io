@@ -9,9 +9,9 @@
   <meta name="author" content="Mestdagh Tom">
 
   
-  <meta name="description" content="I needed a way to start an application when a device is
-connected to the RPi. In this example the barcodescanner
-software should start when we &hellip;">
+  <meta name="description" content="When working with currencies I have the tendency to store
+the value in the database as an INT value, to encounter less rounding errors.
+The value &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -67,6 +67,77 @@ software should start when we &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/02/13/creating-a-currency-textfield-in-angularjs/">Creating a Currency Textfield in AngularJS</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-02-13T17:12:29+01:00" pubdate data-updated="true">Feb 13<sup>th</sup>, 2015</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>When working with currencies I have the tendency to store
+the value in the database as an INT value, to encounter less rounding errors.
+The value shown is 99.99 while the persisted value is 9999.</p>
+
+<p>AngularJS Directive seems to be a great way to make a custom textfield.</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">app</span><span class="o">.</span><span class="n">directive</span><span class="p">(</span><span class="s2">&quot;currencyField&quot;</span><span class="p">,</span><span class="o">[</span><span class="s1">&#39;$sce&#39;</span><span class="p">,</span><span class="n">function</span><span class="p">(</span><span class="vg">$sce</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="p">{</span>
+        <span class="ss">restrict</span><span class="p">:</span> <span class="s1">&#39;AE&#39;</span><span class="p">,</span>
+        <span class="nb">require</span><span class="p">:</span> <span class="s1">&#39;ngModel&#39;</span><span class="p">,</span>
+        <span class="ss">template</span><span class="p">:</span> <span class="s1">&#39;&lt;input type=&quot;text&quot; min=&quot;0.0&quot; step=&quot;0.01&quot; size=&quot;4&quot; /&gt;&#39;</span><span class="p">,</span>
+        <span class="ss">replace</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span>
+        <span class="ss">link</span><span class="p">:</span> <span class="n">function</span><span class="p">(</span><span class="n">scope</span><span class="p">,</span><span class="n">elem</span><span class="p">,</span><span class="n">attrs</span><span class="p">,</span><span class="n">ngModel</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">ngModel</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
+          <span class="n">function</span> <span class="n">centsToEuro</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">value</span> <span class="o">/</span> <span class="mi">100</span><span class="o">.</span><span class="mi">0</span><span class="p">;</span>
+          <span class="p">}</span>
+
+          <span class="n">function</span> <span class="n">euroToCents</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">parseInt</span><span class="p">(</span><span class="n">value</span> <span class="o">*</span> <span class="mi">100</span><span class="p">);</span>
+          <span class="p">}</span>
+
+          <span class="n">ngModel</span><span class="o">.</span><span class="vg">$parsers</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">euroToCents</span><span class="p">);</span>
+          <span class="n">ngModel</span><span class="o">.</span><span class="vg">$formatters</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">centsToEuro</span><span class="p">);</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span><span class="o">]</span><span class="p">);</span></code></pre></div>
+
+
+<p>To use it, just add currency-field to input field</p>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;input</span> <span class="na">currency-field</span> <span class="na">ng-model=</span><span class="s">&quot;saleitem.price&quot;</span> <span class="na">ng-blur=</span><span class="s">&quot;update(saleitem)&quot;</span> <span class="na">placeholder=</span><span class="s">&quot;price&quot;</span> <span class="nt">/&gt;</span></code></pre></div>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -768,54 +839,6 @@ Clients use /data-1 as mountpoint.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/08/03/books-to-read/">Books to Read</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-08-03T00:00:00+02:00" pubdate data-updated="true">Aug 3<sup>rd</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><ul>
-<li>The Banker&rsquo;s Clothes</li>
-<li>The Housekeeper and the Professor</li>
-<li>The Circle</li>
-<li>Oil on the Brain: Adventures from the Pump to the Pipeline</li>
-<li><p>The Quest [Daniel Yergin]</p>
-
-<p>  Read first part it.  Very interesting.
-  Puts current crisis in perspective.</p></li>
-<li>The Goal</li>
-<li>Grand Pursuit [Sylvia Nasar]</li>
-</ul>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -831,6 +854,10 @@ Clients use /data-1 as mountpoint.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/02/13/creating-a-currency-textfield-in-angularjs/">Creating a Currency Textfield in AngularJS</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/01/22/detect-a-usb-device-on-linux-with-udev/">Detect a USB Device on Linux With Udev</a>
       </li>
     
@@ -844,10 +871,6 @@ Clients use /data-1 as mountpoint.</p>
     
       <li class="post">
         <a href="/blog/2014/09/24/add-custom-protocol-handler-to-iceweasel/">Add Custom Protocol Handler to Iceweasel</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/09/05/openvpn-server-setup/">OpenVPN Server Setup</a>
       </li>
     
   </ul>
