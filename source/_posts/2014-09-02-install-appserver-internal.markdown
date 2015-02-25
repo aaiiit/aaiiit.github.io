@@ -28,8 +28,52 @@ Howto install an application server @ Suwappu
     {% endhighlight %}
 
   * Configure node
-
     node['app']['name']
+
+    {% highlight bash %}
+    1 {
+    2   "name": "ws1.suwappu.net",
+    3   "chef_environment": "_default",
+    4   "normal": {
+    5     "tags": [
+    6 
+    7     ],
+    8     "app": {
+    9       "name": "sdn",
+   10       "path": "/u/apps/sdn_production",
+   11       "username": "sdn",
+   12       "password": "YOURMOMMA"
+   13     },
+   14     "mysql": {
+   15       "server_root_password": "YOURMOMMA"
+   16     },
+   17     "unicorn-ng": {
+   18       "service": {
+   19         "environment": "production",
+   20         "user": "deploy"
+   21       }
+   22     },
+   23     "nginx": {
+   24       "user": "deploy"
+   25     },
+   26     "rvm": {
+   27       "install_pkgs": [
+   28         "sed",
+   29         "grep",
+   30         "tar",
+   31         "gzip",
+   32         "bzip2",
+   33         "bash",
+   34         "curl",
+   35         "git-core"
+   36       ]
+   37     }
+   38   },
+   39   "run_list": [
+   40     "recipe[suwappu::appserver]"
+   41   ]
+   42 }
+    {% endhighlight %}
 
   * Install appserver
 
@@ -69,3 +113,5 @@ Howto install an application server @ Suwappu
     knife bootstrap nginx-node -r 'suwappu::nginx-reverse-proxies'
     {% endhighlight %}
 
+
+EDIT: Added node example data
