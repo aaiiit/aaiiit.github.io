@@ -3,6 +3,12 @@
   
   
   <url>
+    <loc>http://aaiiit.github.io/blog/2015/02/27/using-separate-server-for-subdir-nginx/</loc>
+    <lastmod>2015-02-27T09:22:06+01:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>http://aaiiit.github.io/blog/2015/02/13/creating-a-currency-textfield-in-angularjs/</loc>
     <lastmod>2015-02-13T17:12:29+01:00</lastmod>
     <priority>0.8</priority>
@@ -155,14 +161,14 @@
   
   <url>
     <loc>http://aaiiit.github.io/blog/archives/</loc>
-    <lastmod>2015-02-25T16:28:48+01:00</lastmod>
+    <lastmod>2015-02-27T09:28:31+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://aaiiit.github.io/</loc>
-    <lastmod>2015-02-25T16:28:48+01:00</lastmod>
+    <lastmod>2015-02-27T09:28:31+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>

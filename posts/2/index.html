@@ -9,11 +9,9 @@
   <meta name="author" content="Mestdagh Tom">
 
   
-  <meta name="description" content="The Banker&rsquo;s Clothes
-The Housekeeper and the Professor
-The Circle
-Oil on the Brain: Adventures from the Pump to the Pipeline
-The Quest [Daniel &hellip;">
+  <meta name="description" content="Storage server Using a Raspberry PI model B with external hdd&rsquo;s as a NAS.
+Device is identified as &lsquo;storage&rsquo; on the network.
+HDD& &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,6 +67,62 @@ The Quest [Daniel &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/08/03/internal-storage/">Internal Storage</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-08-03T13:59:13+02:00" pubdate data-updated="true">Aug 3<sup>rd</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>Storage server</h2>
+
+<p>Using a Raspberry PI model B with external hdd&rsquo;s as a NAS.
+Device is identified as &lsquo;storage&rsquo; on the network.
+HDD&rsquo;s are mounted in /mnt.  Right now only data-1 is mounted.
+Clients use /data-1 as mountpoint.</p>
+
+<h1>NFS mounts</h1>
+
+<p>storage:/mnt/data-1 /data-1 nfs defaults    0   0</p>
+
+<h2>TODO</h2>
+
+<ul>
+<li>Setup rights so that clients can write to it</li>
+<li><p>Create bootscript so that all necessary services are started</p>
+
+<p>  After booting storage NFS can not be started because rpcbind
+  is not started.  First start rpcbind then nfs-common and nfs-kernel</p></li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -522,55 +576,6 @@ host config.</p></li>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/05/30/openvz-quota-on-syscall/">OpenVZ Problem : Quota on Syscall</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-05-30T00:00:00+02:00" pubdate data-updated="true">May 30<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>From :
-<a href="http://serverguru.blogspot.be/2009/09/vzquota-error-quota-on-syscall-for-id.html">http://serverguru.blogspot.be/2009/09/vzquota-error-quota-on-syscall-for-id.html</a></p>
-
-<p>Reason: The vzquota of that particular vps still running in the server. So you
-have to drop the quota before applying the new changes.</p>
-
-<p>remove /var/vzquota/quota. and drop the particular quota</p>
-
-<ul>
-<li>rm /var/vzquota/quota.110</li>
-<li>vzquota drop 110</li>
-<li>vzctl start 110</li>
-</ul>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/3">&larr; Older</a>
@@ -588,6 +593,10 @@ have to drop the quota before applying the new changes.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/02/27/using-separate-server-for-subdir-nginx/">Using Separate Server for Subdir - Nginx</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/02/13/creating-a-currency-textfield-in-angularjs/">Creating a Currency Textfield in AngularJS</a>
       </li>
     
@@ -601,10 +610,6 @@ have to drop the quota before applying the new changes.</p>
     
       <li class="post">
         <a href="/blog/2014/09/24/adding-a-vpn-client-to-suwappu-network/">Adding a VPN Client to Suwappu Network</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/09/24/add-custom-protocol-handler-to-iceweasel/">Add Custom Protocol Handler to Iceweasel</a>
       </li>
     
   </ul>

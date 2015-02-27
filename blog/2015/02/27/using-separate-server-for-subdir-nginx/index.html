@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: Openvz - Brainleak</title>
+  <title>Using Separate Server for Subdir - Nginx - Brainleak</title>
   <meta name="author" content="Mestdagh Tom">
 
   
-  <meta name="description" content="Category: openvz">
+  <meta name="description" content="www.gameswap.be/* and www.gameswap.be/blog uses a different server.
+To facilitate this, add location blog to configuration of the reverse proxy ( &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://aaiiit.github.io/blog/categories/openvz">
+  <link rel="canonical" href="http://aaiiit.github.io/blog/2015/02/27/using-separate-server-for-subdir-nginx">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Brainleak" type="application/atom+xml">
@@ -64,49 +65,89 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Openvz</h1>
+    
+      <h1 class="entry-title">Using Separate Server for Subdir - Nginx</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-02-27T09:22:06+01:00" pubdate data-updated="true">Feb 27<sup>th</sup>, 2015</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>www.gameswap.be/* and www.gameswap.be/blog uses a different server.
+To facilitate this, add location blog to configuration of the reverse proxy (nginx).</p>
 
-  
-  <h2>2014</h2>
-
-<article>
-  
-<h1><a href="/blog/2014/06/01/openvz-container-tun-tap/">OpenVZ Container TUN/TAP</a></h1>
-<time datetime="2014-06-01T00:00:00+02:00" pubdate><span class='month'>Jun</span> <span class='day'>01</span> <span class='year'>2014</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/openvz/'>openvz</a>, <a class='category' href='/blog/categories/server/'>server</a></span>
-</footer>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">location /blog <span class="o">{</span>
+    proxy_set_header X-Real-IP  <span class="nv">$remote_addr</span><span class="p">;</span>
+    proxy_set_header X-Forwarded-For <span class="nv">$remote_addr</span><span class="p">;</span>
+    proxy_set_header Host <span class="nv">$host</span><span class="p">;</span>
+    proxy_pass http://10.1.0.22:8080<span class="p">;</span>
+  <span class="o">}</span></code></pre></div>
 
 
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog/2014/05/30/openvz-quota-on-syscall/">OpenVZ Problem : Quota on Syscall</a></h1>
-<time datetime="2014-05-30T00:00:00+02:00" pubdate><span class='month'>May</span> <span class='day'>30</span> <span class='year'>2014</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/openvz/'>openvz</a>, <a class='category' href='/blog/categories/problem/'>problem</a>, <a class='category' href='/blog/categories/quota/'>quota</a></span>
-</footer>
-
-
-</article>
 
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Mestdagh Tom</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-02-27T09:22:06+01:00" pubdate data-updated="true">Feb 27<sup>th</sup>, 2015</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://aaiiit.github.io/blog/2015/02/27/using-separate-server-for-subdir-nginx/" data-via="" data-counturl="http://aaiiit.github.io/blog/2015/02/27/using-separate-server-for-subdir-nginx/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/02/13/creating-a-currency-textfield-in-angularjs/" title="Previous Post: Creating a currency textfield in AngularJS">&laquo; Creating a currency textfield in AngularJS</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
 </div>

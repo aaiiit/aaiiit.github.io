@@ -9,8 +9,8 @@
   <meta name="author" content="Mestdagh Tom">
 
   
-  <meta name="description" content="Chef Repo should have Cheffile.
-Seems to work like bundler and stuff. Add needed cookbooks to file cookbook &lsquo;zeromq&rsquo;,:git => &lsquo;https &hellip;">
+  <meta name="description" content="From :
+http://serverguru.blogspot.be/2009/09/vzquota-error-quota-on-syscall-for-id.html Reason: The vzquota of that particular vps still running in &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +66,55 @@ Seems to work like bundler and stuff. Add needed cookbooks to file cookbook &lsq
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/05/30/openvz-quota-on-syscall/">OpenVZ Problem : Quota on Syscall</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-30T00:00:00+02:00" pubdate data-updated="true">May 30<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>From :
+<a href="http://serverguru.blogspot.be/2009/09/vzquota-error-quota-on-syscall-for-id.html">http://serverguru.blogspot.be/2009/09/vzquota-error-quota-on-syscall-for-id.html</a></p>
+
+<p>Reason: The vzquota of that particular vps still running in the server. So you
+have to drop the quota before applying the new changes.</p>
+
+<p>remove /var/vzquota/quota. and drop the particular quota</p>
+
+<ul>
+<li>rm /var/vzquota/quota.110</li>
+<li>vzquota drop 110</li>
+<li>vzctl start 110</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -337,6 +386,10 @@ Can alsy use Guard for other things.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/02/27/using-separate-server-for-subdir-nginx/">Using Separate Server for Subdir - Nginx</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/02/13/creating-a-currency-textfield-in-angularjs/">Creating a Currency Textfield in AngularJS</a>
       </li>
     
@@ -350,10 +403,6 @@ Can alsy use Guard for other things.</p>
     
       <li class="post">
         <a href="/blog/2014/09/24/adding-a-vpn-client-to-suwappu-network/">Adding a VPN Client to Suwappu Network</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/09/24/add-custom-protocol-handler-to-iceweasel/">Add Custom Protocol Handler to Iceweasel</a>
       </li>
     
   </ul>

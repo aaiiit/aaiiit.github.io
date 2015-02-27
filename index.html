@@ -9,9 +9,8 @@
   <meta name="author" content="Mestdagh Tom">
 
   
-  <meta name="description" content="When working with currencies I have the tendency to store
-the value in the database as an INT value, to encounter less rounding errors.
-The value &hellip;">
+  <meta name="description" content="www.gameswap.be/* and www.gameswap.be/blog uses a different server.
+To facilitate this, add location blog to configuration of the reverse proxy ( &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -67,6 +66,53 @@ The value &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/02/27/using-separate-server-for-subdir-nginx/">Using Separate Server for Subdir - Nginx</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-02-27T09:22:06+01:00" pubdate data-updated="true">Feb 27<sup>th</sup>, 2015</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>www.gameswap.be/* and www.gameswap.be/blog uses a different server.
+To facilitate this, add location blog to configuration of the reverse proxy (nginx).</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">location /blog <span class="o">{</span>
+    proxy_set_header X-Real-IP  <span class="nv">$remote_addr</span><span class="p">;</span>
+    proxy_set_header X-Forwarded-For <span class="nv">$remote_addr</span><span class="p">;</span>
+    proxy_set_header Host <span class="nv">$host</span><span class="p">;</span>
+    proxy_pass http://10.1.0.22:8080<span class="p">;</span>
+  <span class="o">}</span></code></pre></div>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -830,62 +876,6 @@ node[&lsquo;app&rsquo;][&lsquo;name&rsquo;]</li>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/08/03/internal-storage/">Internal Storage</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-08-03T13:59:13+02:00" pubdate data-updated="true">Aug 3<sup>rd</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>Storage server</h2>
-
-<p>Using a Raspberry PI model B with external hdd&rsquo;s as a NAS.
-Device is identified as &lsquo;storage&rsquo; on the network.
-HDD&rsquo;s are mounted in /mnt.  Right now only data-1 is mounted.
-Clients use /data-1 as mountpoint.</p>
-
-<h1>NFS mounts</h1>
-
-<p>storage:/mnt/data-1 /data-1 nfs defaults    0   0</p>
-
-<h2>TODO</h2>
-
-<ul>
-<li>Setup rights so that clients can write to it</li>
-<li><p>Create bootscript so that all necessary services are started</p>
-
-<p>  After booting storage NFS can not be started because rpcbind
-  is not started.  First start rpcbind then nfs-common and nfs-kernel</p></li>
-</ul>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -901,6 +891,10 @@ Clients use /data-1 as mountpoint.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/02/27/using-separate-server-for-subdir-nginx/">Using Separate Server for Subdir - Nginx</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/02/13/creating-a-currency-textfield-in-angularjs/">Creating a Currency Textfield in AngularJS</a>
       </li>
     
@@ -914,10 +908,6 @@ Clients use /data-1 as mountpoint.</p>
     
       <li class="post">
         <a href="/blog/2014/09/24/adding-a-vpn-client-to-suwappu-network/">Adding a VPN Client to Suwappu Network</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/09/24/add-custom-protocol-handler-to-iceweasel/">Add Custom Protocol Handler to Iceweasel</a>
       </li>
     
   </ul>
