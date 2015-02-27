@@ -1,0 +1,279 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Detect a USB Device on Linux With Udev - Brainleak</title>
+  <meta name="author" content="Mestdagh Tom">
+
+  
+  <meta name="description" content="I needed a way to start an application when a device is
+connected to the RPi. In this example the barcodescanner
+software should start when we &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://aaiiit.github.io/blog/2015/01/22/detect-a-usb-device-on-linux-with-udev">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Brainleak" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Brainleak</a></h1>
+  
+    <h2>Blog as external memory</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:aaiiit.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Detect a USB Device on Linux With Udev</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-22T17:02:34+01:00" pubdate data-updated="true">Jan 22<sup>nd</sup>, 2015</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I needed a way to start an application when a device is
+connected to the RPi.  In this example the barcodescanner
+software should start when we connect the scanner.
+Adding a udev rule should do the trick.</p>
+
+<ul>
+<li>First get the ID of the specific device</li>
+</ul>
+
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">lsusb
+
+    Bus <span class="m">001</span> Device 006: ID 05f9:2214 PSC Scanning, Inc. 
+    Bus <span class="m">001</span> Device 004: ID 0a5f:0015 Zebra</code></pre></div>
+
+
+<ul>
+<li><p>Add the rules file located in /etc/udev/rules.d/,
+for instance /etc/udev/rules.d/85-custom_usb_device_rules.rules</p></li>
+<li><p>Add the rule to detect scanner and start software, the idVendor
+and idProduct point to the ID we got from lsusb</p></li>
+</ul>
+
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">ACTION</span><span class="o">==</span><span class="s2">&quot;add&quot;</span>,SUBSYSTEM<span class="o">==</span><span class="s2">&quot;usb&quot;</span>,ATTR<span class="o">{</span>idVendor<span class="o">}==</span><span class="s2">&quot;05f9&quot;</span>,
+    ATTR<span class="o">{</span>idProduct<span class="o">}==</span><span class="s2">&quot;2214&quot;</span>,RUN+<span class="o">=</span><span class="s2">&quot;/etc/init.d/barcodescanner start&quot;</span></code></pre></div>
+
+
+<ul>
+<li>Reload the rules or reboot</li>
+</ul>
+
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">udevadm control --reload-rules</code></pre></div>
+
+
+<h1>List of ID&rsquo;s</h1>
+
+<table>
+<thead>
+<tr>
+<th> Device          </th>
+<th> ID        </th>
+<th> ID        </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> Barcodescanner  </td>
+<td> 05f9:2214 </td>
+<td>           </td>
+</tr>
+<tr>
+<td> Zebra Printer   </td>
+<td> 0a5f:0015 </td>
+<td>           </td>
+</tr>
+<tr>
+<td> Dacal DC-300    </td>
+<td> 04b4:5a9b </td>
+<td> 04b4:5203 </td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Mestdagh Tom</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-22T17:02:34+01:00" pubdate data-updated="true">Jan 22<sup>nd</sup>, 2015</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://aaiiit.github.io/blog/2015/01/22/detect-a-usb-device-on-linux-with-udev/" data-via="" data-counturl="http://aaiiit.github.io/blog/2015/01/22/detect-a-usb-device-on-linux-with-udev/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/12/27/updating-my-capistrano-deployment-process-for-rails-4/" title="Previous Post: updating my capistrano deployment process for rails 4">&laquo; updating my capistrano deployment process for rails 4</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2015/02/13/creating-a-currency-textfield-in-angularjs/" title="Next Post: Creating a currency textfield in AngularJS">Creating a currency textfield in AngularJS &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/02/27/using-separate-server-for-subdir-nginx/">Using Separate Server for Subdir - Nginx</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/02/13/creating-a-currency-textfield-in-angularjs/">Creating a Currency Textfield in AngularJS</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/01/22/detect-a-usb-device-on-linux-with-udev/">Detect a USB Device on Linux With Udev</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/12/27/updating-my-capistrano-deployment-process-for-rails-4/">Updating My Capistrano Deployment Process for Rails 4</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/09/24/adding-a-vpn-client-to-suwappu-network/">Adding a VPN Client to Suwappu Network</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Mestdagh Tom -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

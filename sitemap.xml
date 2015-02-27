@@ -3,6 +3,72 @@
   
   
   <url>
+    <loc>http://aaiiit.github.io/blog/2015/02/27/using-separate-server-for-subdir-nginx/</loc>
+    <lastmod>2015-02-27T09:22:06+01:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://aaiiit.github.io/blog/2015/02/13/creating-a-currency-textfield-in-angularjs/</loc>
+    <lastmod>2015-02-13T17:12:29+01:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://aaiiit.github.io/blog/2015/01/22/detect-a-usb-device-on-linux-with-udev/</loc>
+    <lastmod>2015-01-22T17:02:34+01:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://aaiiit.github.io/blog/2014/12/27/updating-my-capistrano-deployment-process-for-rails-4/</loc>
+    <lastmod>2014-12-27T15:14:37+01:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://aaiiit.github.io/blog/2014/09/24/adding-a-vpn-client-to-suwappu-network/</loc>
+    <lastmod>2014-09-24T13:51:31+02:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://aaiiit.github.io/blog/2014/09/24/add-custom-protocol-handler-to-iceweasel/</loc>
+    <lastmod>2014-09-24T12:00:45+02:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://aaiiit.github.io/blog/2014/09/05/openvpn-server-setup/</loc>
+    <lastmod>2014-09-05T11:37:34+02:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://aaiiit.github.io/blog/2014/09/03/install-proxmox-on-hetzner-server/</loc>
+    <lastmod>2014-09-03T13:10:15+02:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://aaiiit.github.io/blog/2014/09/02/install-appserver-internal/</loc>
+    <lastmod>2014-09-02T09:41:55+02:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://aaiiit.github.io/blog/2014/08/17/openvz-moving-containers/</loc>
+    <lastmod>2014-08-17T13:59:13+02:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://aaiiit.github.io/blog/2014/08/03/internal-storage/</loc>
+    <lastmod>2014-08-03T13:59:13+02:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>http://aaiiit.github.io/blog/2014/08/03/books-to-read/</loc>
     <lastmod>2014-08-03T00:00:00+02:00</lastmod>
     <priority>0.8</priority>
@@ -95,14 +161,14 @@
   
   <url>
     <loc>http://aaiiit.github.io/blog/archives/</loc>
-    <lastmod>2014-08-03T12:17:40+02:00</lastmod>
+    <lastmod>2015-02-27T09:28:31+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://aaiiit.github.io/</loc>
-    <lastmod>2014-08-03T12:17:40+02:00</lastmod>
+    <lastmod>2015-02-27T09:28:31+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
