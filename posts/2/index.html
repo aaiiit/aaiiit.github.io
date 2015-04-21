@@ -9,9 +9,7 @@
   <meta name="author" content="Mestdagh Tom">
 
   
-  <meta name="description" content="Storage server Using a Raspberry PI model B with external hdd&rsquo;s as a NAS.
-Device is identified as &lsquo;storage&rsquo; on the network.
-HDD& &hellip;">
+  <meta name="description" content="OpenVZ moving containers When moving OpenVZ containers on the hdd to another location you have to do some other changes to : Edit /etc/vz/conf/.conf &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -67,6 +65,54 @@ HDD& &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/08/17/openvz-moving-containers/">OpenVZ Moving Containers</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-08-17T13:59:13+02:00" pubdate data-updated="true">Aug 17<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>OpenVZ moving containers</h2>
+
+<p>When moving OpenVZ containers on the hdd to another location you have to do some other changes to :</p>
+
+<ul>
+<li>Edit /etc/vz/conf/<ctid>.conf and change private path to new location</li>
+<li>Drop vzquota on container
+  vzquota drop <ctid></li>
+</ul>
+
+
+<p>  Then you probably should reinitialize quota and turn it back on again,
+  but that&rsquo;s for another time.  Need to look into it.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -513,69 +559,6 @@ host config.</p></li>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/05/30/using-zeromq/">Using ZeroMQ</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-05-30T00:00:00+02:00" pubdate data-updated="true">May 30<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Install through Chef <a href="https://github.com/plu/zeromq-cookbook">zeromq cookbook</a></p>
-
-<p>This cookbook has been added to Role zeromq</p>
-
-<h1>ZeroMQ Version</h1>
-
-<p>Use this C-code to get the version of ZeroMq.</p>
-
-<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#include &lt;stdio.h&gt;</span>
-  <span class="cp">#include &quot;zmq.h&quot;</span>
-
-  <span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
-    <span class="kt">int</span> <span class="n">major</span><span class="p">,</span> <span class="n">minor</span><span class="p">,</span> <span class="n">patch</span><span class="p">;</span>
-    <span class="n">zmq_version</span><span class="p">(</span><span class="o">&amp;</span><span class="n">major</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">minor</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">patch</span><span class="p">);</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Installed ZeroMQ version: %d.%d.%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">major</span><span class="p">,</span> <span class="n">minor</span><span class="p">,</span> <span class="n">patch</span><span class="p">);</span>
-
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="p">}</span></code></pre></div>
-
-
-<p>Compile and run:</p>
-
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">gcc -lzmq zeromq-verion.c -o zeromq-version
-  ./zeromq-version
-  Installed ZeroMQ version: 3.2.4</code></pre></div>
-
-
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/3">&larr; Older</a>
@@ -593,6 +576,10 @@ host config.</p></li>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/04/21/daemonizing-a-script-within-suwappu-with-chef/">Daemonizing a Script Within Suwappu With Chef</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/02/27/using-separate-server-for-subdir-nginx/">Using Separate Server for Subdir - Nginx</a>
       </li>
     
@@ -606,10 +593,6 @@ host config.</p></li>
     
       <li class="post">
         <a href="/blog/2014/12/27/updating-my-capistrano-deployment-process-for-rails-4/">Updating My Capistrano Deployment Process for Rails 4</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/09/24/adding-a-vpn-client-to-suwappu-network/">Adding a VPN Client to Suwappu Network</a>
       </li>
     
   </ul>

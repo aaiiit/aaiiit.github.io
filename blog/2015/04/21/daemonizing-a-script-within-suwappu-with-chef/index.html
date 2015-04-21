@@ -5,14 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Chef Fails on Bootstrapping the First Time - Brainleak</title>
+  <title>Daemonizing a Script Within Suwappu With Chef - Brainleak</title>
   <meta name="author" content="Mestdagh Tom">
 
   
-  <meta name="description" content="= Problem shops.suwappu.net Installing Chef Client...
-shops.suwappu.net --2014-06-17 10:12:40--
-https://www.opscode.com/chef/install.sh
-shops.suwappu &hellip;">
+  <meta name="description" content="The Suwappu network consists of multiple web apps and other scripts.
+All those should start when the machine is booted. Webapps use the puma daemon &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,7 +19,7 @@ shops.suwappu &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://aaiiit.github.io/blog/2014/06/17/chef-first-run-fails">
+  <link rel="canonical" href="http://aaiiit.github.io/blog/2015/04/21/daemonizing-a-script-within-suwappu-with-chef">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Brainleak" type="application/atom+xml">
@@ -71,7 +69,7 @@ shops.suwappu &hellip;">
   
   <header>
     
-      <h1 class="entry-title">Chef Fails on Bootstrapping the First Time</h1>
+      <h1 class="entry-title">Daemonizing a Script Within Suwappu With Chef</h1>
     
     
       <p class="meta">
@@ -87,25 +85,52 @@ shops.suwappu &hellip;">
   
 
 
-<time datetime="2014-06-17T00:00:00+02:00" pubdate data-updated="true">Jun 17<sup>th</sup>, 2014</time>
+<time datetime="2015-04-21T15:01:17+02:00" pubdate data-updated="true">Apr 21<sup>st</sup>, 2015</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>= Problem</p>
+<div class="entry-content"><p>The Suwappu network consists of multiple web apps and other scripts.
+All those should start when the machine is booted.  Webapps use the puma daemon script for now.</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">shops.suwappu.net Installing Chef Client...
-shops.suwappu.net --2014-06-17 10:12:40--
-https://www.opscode.com/chef/install.sh
-shops.suwappu.net Resolving www.opscode.com <span class="o">(</span>www.opscode.com<span class="o">)</span>... 184.106.28.90
-shops.suwappu.net Connecting to www.opscode.com
-<span class="o">(</span>www.opscode.com<span class="o">)</span><span class="p">|</span>184.106.28.90<span class="p">|</span>:443... connected.
-shops.suwappu.net ERROR: The certificate of <span class="sb">`</span>www.opscode.com<span class="err">&#39;</span> is not trusted.
-shops.suwappu.net Starting first Chef Client run...
-shops.suwappu.net bash: line 85: chef-client: <span class="nb">command </span>not found
-<span class="o">[</span>master<span class="o">][</span>/Code/suwappu/chef-resto/chef-repo-new<span class="o">]</span> librarian-chef</code></pre></div>
+<p>With Chef we can create a bootscript on every Suwappu appserver by running &lsquo;suwappu::appserver-bootscript&rsquo;.
+The node should contain following information :</p>
+
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;qualitycontrol.suwappu.net&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;chef_environment&quot;</span><span class="p">:</span> <span class="s2">&quot;_default&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;normal&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+
+    <span class="p">],</span>
+    <span class="nt">&quot;rvm&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;install_pkgs&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;sed&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;grep&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;tar&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;gzip&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;bzip2&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;bash&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;curl&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;git-core&quot;</span>
+      <span class="p">]</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;app&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;qualitycontrol&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;boot&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;quality_control&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;command&quot;</span><span class="p">:</span> <span class="s2">&quot;cd /nfs/apps/qualitycontrol_production/current; nohup bundle exec script/quality_control production &gt; log/quality_control.out 2&gt; log/quality_control.err &amp;&quot;</span>
+      <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;run_list&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;recipe[suwappu::backup_install]&quot;</span>
+  <span class="p">]</span>
+<span class="p">}</span></code></pre></div>
 
 
 
@@ -131,21 +156,15 @@ shops.suwappu.net bash: line 85: chef-client: <span class="nb">command </span>no
   
 
 
-<time datetime="2014-06-17T00:00:00+02:00" pubdate data-updated="true">Jun 17<sup>th</sup>, 2014</time>
+<time datetime="2015-04-21T15:01:17+02:00" pubdate data-updated="true">Apr 21<sup>st</sup>, 2015</time>
       
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/chef/'>chef</a>, <a class='category' href='/blog/categories/server/'>server</a>
-  
-</span>
 
 
     </p>
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://aaiiit.github.io/blog/2014/06/17/chef-first-run-fails/" data-via="" data-counturl="http://aaiiit.github.io/blog/2014/06/17/chef-first-run-fails/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://aaiiit.github.io/blog/2015/04/21/daemonizing-a-script-within-suwappu-with-chef/" data-via="" data-counturl="http://aaiiit.github.io/blog/2015/04/21/daemonizing-a-script-within-suwappu-with-chef/" >Tweet</a>
   
   
   
@@ -154,10 +173,8 @@ shops.suwappu.net bash: line 85: chef-client: <span class="nb">command </span>no
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/06/13/using-sso/" title="Previous Post: Using SSO">&laquo; Using SSO</a>
+        <a class="basic-alignment left" href="/blog/2015/02/27/using-separate-server-for-subdir-nginx/" title="Previous Post: Using separate server for subdir - nginx">&laquo; Using separate server for subdir - nginx</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2014/06/23/rails4-engines-test/" title="Next Post: Rails 4 engines test">Rails 4 engines test &raquo;</a>
       
     </p>
   </footer>

@@ -4,7 +4,7 @@
   <title><![CDATA[Brainleak]]></title>
   <link href="http://aaiiit.github.io/atom.xml" rel="self"/>
   <link href="http://aaiiit.github.io/"/>
-  <updated>2015-02-27T09:28:31+01:00</updated>
+  <updated>2015-04-21T15:07:49+02:00</updated>
   <id>http://aaiiit.github.io/</id>
   <author>
     <name><![CDATA[Mestdagh Tom]]></name>
@@ -12,6 +12,56 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Daemonizing a Script Within Suwappu With Chef]]></title>
+    <link href="http://aaiiit.github.io/blog/2015/04/21/daemonizing-a-script-within-suwappu-with-chef/"/>
+    <updated>2015-04-21T15:01:17+02:00</updated>
+    <id>http://aaiiit.github.io/blog/2015/04/21/daemonizing-a-script-within-suwappu-with-chef</id>
+    <content type="html"><![CDATA[<p>The Suwappu network consists of multiple web apps and other scripts.
+All those should start when the machine is booted.  Webapps use the puma daemon script for now.</p>
+
+<p>With Chef we can create a bootscript on every Suwappu appserver by running &lsquo;suwappu::appserver-bootscript&rsquo;.
+The node should contain following information :</p>
+
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;qualitycontrol.suwappu.net&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;chef_environment&quot;</span><span class="p">:</span> <span class="s2">&quot;_default&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;normal&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+
+    <span class="p">],</span>
+    <span class="nt">&quot;rvm&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;install_pkgs&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;sed&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;grep&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;tar&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;gzip&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;bzip2&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;bash&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;curl&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;git-core&quot;</span>
+      <span class="p">]</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;app&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;qualitycontrol&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;boot&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;quality_control&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;command&quot;</span><span class="p">:</span> <span class="s2">&quot;cd /nfs/apps/qualitycontrol_production/current; nohup bundle exec script/quality_control production &gt; log/quality_control.out 2&gt; log/quality_control.err &amp;&quot;</span>
+      <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;run_list&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;recipe[suwappu::backup_install]&quot;</span>
+  <span class="p">]</span>
+<span class="p">}</span></code></pre></div>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Using Separate Server for Subdir - Nginx]]></title>
@@ -750,42 +800,6 @@ It&rsquo;s like running Github for internal purposes.</p>
 <li><p>Edit gitlab-shell/config.yml and gitlab/config/gitlab.yml and change
 host config.</p></li>
 </ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Using ZeroMQ]]></title>
-    <link href="http://aaiiit.github.io/blog/2014/05/30/using-zeromq/"/>
-    <updated>2014-05-30T00:00:00+02:00</updated>
-    <id>http://aaiiit.github.io/blog/2014/05/30/using-zeromq</id>
-    <content type="html"><![CDATA[<p>Install through Chef <a href="https://github.com/plu/zeromq-cookbook">zeromq cookbook</a></p>
-
-<p>This cookbook has been added to Role zeromq</p>
-
-<h1>ZeroMQ Version</h1>
-
-<p>Use this C-code to get the version of ZeroMq.</p>
-
-<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#include &lt;stdio.h&gt;</span>
-  <span class="cp">#include &quot;zmq.h&quot;</span>
-
-  <span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
-    <span class="kt">int</span> <span class="n">major</span><span class="p">,</span> <span class="n">minor</span><span class="p">,</span> <span class="n">patch</span><span class="p">;</span>
-    <span class="n">zmq_version</span><span class="p">(</span><span class="o">&amp;</span><span class="n">major</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">minor</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">patch</span><span class="p">);</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Installed ZeroMQ version: %d.%d.%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">major</span><span class="p">,</span> <span class="n">minor</span><span class="p">,</span> <span class="n">patch</span><span class="p">);</span>
-
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="p">}</span></code></pre></div>
-
-
-<p>Compile and run:</p>
-
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">gcc -lzmq zeromq-verion.c -o zeromq-version
-  ./zeromq-version
-  Installed ZeroMQ version: 3.2.4</code></pre></div>
-
-
 
 ]]></content>
   </entry>

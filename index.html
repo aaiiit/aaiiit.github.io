@@ -9,8 +9,8 @@
   <meta name="author" content="Mestdagh Tom">
 
   
-  <meta name="description" content="www.gameswap.be/* and www.gameswap.be/blog uses a different server.
-To facilitate this, add location blog to configuration of the reverse proxy ( &hellip;">
+  <meta name="description" content="The Suwappu network consists of multiple web apps and other scripts.
+All those should start when the machine is booted. Webapps use the puma daemon &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +66,83 @@ To facilitate this, add location blog to configuration of the reverse proxy ( &h
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/04/21/daemonizing-a-script-within-suwappu-with-chef/">Daemonizing a Script Within Suwappu With Chef</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-04-21T15:01:17+02:00" pubdate data-updated="true">Apr 21<sup>st</sup>, 2015</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>The Suwappu network consists of multiple web apps and other scripts.
+All those should start when the machine is booted.  Webapps use the puma daemon script for now.</p>
+
+<p>With Chef we can create a bootscript on every Suwappu appserver by running &lsquo;suwappu::appserver-bootscript&rsquo;.
+The node should contain following information :</p>
+
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;qualitycontrol.suwappu.net&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;chef_environment&quot;</span><span class="p">:</span> <span class="s2">&quot;_default&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;normal&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+
+    <span class="p">],</span>
+    <span class="nt">&quot;rvm&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;install_pkgs&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;sed&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;grep&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;tar&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;gzip&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;bzip2&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;bash&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;curl&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;git-core&quot;</span>
+      <span class="p">]</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;app&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;qualitycontrol&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;boot&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;quality_control&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;command&quot;</span><span class="p">:</span> <span class="s2">&quot;cd /nfs/apps/qualitycontrol_production/current; nohup bundle exec script/quality_control production &gt; log/quality_control.out 2&gt; log/quality_control.err &amp;&quot;</span>
+      <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;run_list&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;recipe[suwappu::backup_install]&quot;</span>
+  <span class="p">]</span>
+<span class="p">}</span></code></pre></div>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -828,54 +905,6 @@ node[&lsquo;app&rsquo;][&lsquo;name&rsquo;]</li>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/08/17/openvz-moving-containers/">OpenVZ Moving Containers</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-08-17T13:59:13+02:00" pubdate data-updated="true">Aug 17<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>OpenVZ moving containers</h2>
-
-<p>When moving OpenVZ containers on the hdd to another location you have to do some other changes to :</p>
-
-<ul>
-<li>Edit /etc/vz/conf/<ctid>.conf and change private path to new location</li>
-<li>Drop vzquota on container
-  vzquota drop <ctid></li>
-</ul>
-
-
-<p>  Then you probably should reinitialize quota and turn it back on again,
-  but that&rsquo;s for another time.  Need to look into it.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -891,6 +920,10 @@ node[&lsquo;app&rsquo;][&lsquo;name&rsquo;]</li>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/04/21/daemonizing-a-script-within-suwappu-with-chef/">Daemonizing a Script Within Suwappu With Chef</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/02/27/using-separate-server-for-subdir-nginx/">Using Separate Server for Subdir - Nginx</a>
       </li>
     
@@ -904,10 +937,6 @@ node[&lsquo;app&rsquo;][&lsquo;name&rsquo;]</li>
     
       <li class="post">
         <a href="/blog/2014/12/27/updating-my-capistrano-deployment-process-for-rails-4/">Updating My Capistrano Deployment Process for Rails 4</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/09/24/adding-a-vpn-client-to-suwappu-network/">Adding a VPN Client to Suwappu Network</a>
       </li>
     
   </ul>
